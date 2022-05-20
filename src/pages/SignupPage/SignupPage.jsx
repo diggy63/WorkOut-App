@@ -3,18 +3,29 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 import userService from "../../utils/userService";
 import { useNavigate } from "react-router-dom";
+import { Grid ,Button, Checkbox, Form } from 'semantic-ui-react'
 
 export default function SignUpPage(props) {
   return (
     <>
-      <h1>Signup PAGE</h1>
-      <ul>
-        <li>Read the User Model, You can change it to fit your needs</li>
-        <li>
-          Make sure you read the Signup up func in the User Controller, to know
-          how it is setup to find the user!
-        </li>
-      </ul>
-    </>
+    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Form>
+    <Form.Field>
+      <label>First Name</label>
+      <input placeholder='First Name' />
+    </Form.Field>
+    <Form.Field>
+      <label>Last Name</label>
+      <input placeholder='Last Name' />
+    </Form.Field>
+    <Form.Field>
+      <Checkbox label='I agree to the Terms and Conditions' />
+    </Form.Field>
+    <Button type='submit'>Submit</Button>
+  </Form>
+  </ Grid.Column>
+  </Grid>
+  </>
   );
 }
