@@ -3,29 +3,88 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 import userService from "../../utils/userService";
 import { useNavigate } from "react-router-dom";
-import { Grid ,Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
 
 export default function SignUpPage(props) {
+  const [userInfo, setUserInfo] = useState ({
+    username: '',
+    email: '',
+    password: '',
+    passwordConf: '',
+
+  })
+  function handleSubmit(e){
+    console.log(e)
+  }
+  function handleChange(e){
+      setUserInfo({ 
+        ...userInfo,
+        [e.target.name]:e.target.value
+      })
+
+  }
+
+  function handleFileInput(e){
+
+  }
+
+
   return (
     <>
-    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
+    <Grid textAlign="center" style={{ height: "50vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Form>
-    <Form.Field>
-      <label>First Name</label>
-      <input placeholder='First Name' />
-    </Form.Field>
-    <Form.Field>
-      <label>Last Name</label>
-      <input placeholder='Last Name' />
-    </Form.Field>
-    <Form.Field>
-      <Checkbox label='I agree to the Terms and Conditions' />
-    </Form.Field>
-    <Button type='submit'>Submit</Button>
-  </Form>
-  </ Grid.Column>
-  </Grid>
+        <Header as="h2" textAlign="center">
+          <Header.Content>Sign Up</Header.Content>
+        </Header>
+        <Form autoComplete="off" onSubmit={handleSubmit}>
+          <Segment stacked>
+            <Form.Input
+              name="username"
+              placeholder="username"
+              value={userInfo.username}
+              onChange={handleChange}
+              required
+            />
+            <Form.Input
+              type="email"
+              name="email"
+              placeholder="email"
+              value={userInfo.email}
+              onChange={handleChange}
+              required
+            />
+            <Form.Input
+              name="password"
+              type="password"
+              placeholder="password"
+              value={userInfo.password}
+              onChange={handleChange}
+              required
+            />
+            <Form.Input
+              name="passwordConf"
+              type="password"
+              placeholder="Confirm Password"
+              value={userInfo.passwordConf}
+              onChange={handleChange}
+              required
+            />
+            <Form.Field>
+              <Form.Input
+                type="file"
+                name="photo"
+                placeholder="upload image"
+                onChange={handleFileInput}
+              />
+            </Form.Field>
+            <Button type="submit" className="btn">
+              Signup
+            </Button>
+          </Segment>
+          {/* {error ? <ErrorMessage error={error} /> : null} */}
+        </Form>
+      </Grid.Column>
+    </Grid>
   </>
   );
 }
