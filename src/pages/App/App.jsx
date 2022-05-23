@@ -4,6 +4,8 @@ import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
+import Home from "../Home/Home";
+import Excersices from "../Exercises/Exercises";
 
 function App() {
   const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
@@ -22,7 +24,8 @@ function App() {
   if (user) {
     return (
       <Routes>
-        <Route path="/" element={<h1>This is Home Page!</h1>} />
+        <Route path="/" element={<Home user={user} handleLogout={handleLogout} />} />
+        <Route path="/exercises" element={<Excersices user={user} handleLogout={handleLogout}  />} />
         <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

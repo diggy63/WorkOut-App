@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 import userService from "../../utils/userService";
-import { useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { Button, Form, Grid, Header, Image, Segment } from 'semantic-ui-react'
 
 export default function SignUpPage(props) {
+  const navigate = useNavigate();
+  const [error, setError] = useState('')
   const [userInfo, setUserInfo] = useState ({
     username: '',
     email: '',
@@ -13,8 +15,28 @@ export default function SignUpPage(props) {
     passwordConf: '',
 
   })
-  function handleSubmit(e){
-    console.log(e)
+
+  const [selectedFile, setSelectedFile] = useState('');
+
+
+  async function handleSubmit(e){
+    e.preventDefault();
+    console.log(selectedFile, "photofile")
+    const formData = new FormData();
+    formData.append('photo', selectedFile)
+    for(let feildName in userInfo){
+      formData.append(feildName, userInfo[feildName])
+    }
+    console.log(formData)
+    try {
+      await userService.signup(formData)
+      props.handleSignUpOrLogin();
+      navigate('/')
+      
+    } catch (err) {
+      console.log('could not create user')
+      setError(err)
+    }
   }
   function handleChange(e){
       setUserInfo({ 
@@ -25,7 +47,8 @@ export default function SignUpPage(props) {
   }
 
   function handleFileInput(e){
-
+   console.log(e.target.files);
+    setSelectedFile(e.target.files[0]);
   }
 
 
@@ -70,7 +93,7 @@ export default function SignUpPage(props) {
               required
             />
             <Form.Field>
-              <Form.Input
+            <Form.Input
                 type="file"
                 name="photo"
                 placeholder="upload image"
