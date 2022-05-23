@@ -15,6 +15,7 @@ export default function Head({user, handleLogout}) {
           Logout
         </Link>
         <Link  className="navBarLink" to="/exercises">Excersices</Link>
+        <Link  className="navBarLink" to="/workouts">Workouts</Link>
       </Header>
       <Header as="h2" floated="left">
         <Link to={`/${user?.username}`}>

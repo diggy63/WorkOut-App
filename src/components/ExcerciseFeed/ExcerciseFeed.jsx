@@ -5,11 +5,7 @@ export default function Feed({exs}) {
 
     const excers = exs.map((data, i) => {
         return (
-            <Excercise key={i}/>
-        //   <div key={i}>
-        //     <h1>{data.name}</h1>
-        //     {data.description}
-        //   </div>
+            <Excercise key={i} data={data}/>
         );
       });
 

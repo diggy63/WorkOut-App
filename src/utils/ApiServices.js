@@ -2,9 +2,9 @@ import tokenService from "./tokenService";
 
 const BASE_URL = "/api/exercises/";
 
-export function find() {
-    return fetch(BASE_URL, {
-      headers: {
+export function find(bodyPart) {
+    return fetch(`${BASE_URL}/${bodyPart}`, {
+        headers: {
         'Authorization': 'Bearer ' + tokenService.getToken()
       }
     })
@@ -15,7 +15,7 @@ export function find() {
   }
 
   export function findImg() {
-    return fetch(BASE_URL + "/img", {
+    return fetch(`${BASE_URL}/img`, {
       headers: {
         'Authorization': 'Bearer ' + tokenService.getToken()
       }
