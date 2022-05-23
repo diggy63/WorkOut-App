@@ -4,6 +4,7 @@ const exCtrl = require("../../controllers/exercises");
 
 
 router.get('/', exCtrl.find);
+router.get('/img', exCtrl.findImg)
 
 
 

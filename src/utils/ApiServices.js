@@ -13,3 +13,15 @@ export function find() {
       throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
     })
   }
+
+  export function findImg() {
+    return fetch(BASE_URL + "/img", {
+      headers: {
+        'Authorization': 'Bearer ' + tokenService.getToken()
+      }
+    })
+    .then(res => {
+      if(res.ok) return res.json();
+      throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
+    })
+  }
