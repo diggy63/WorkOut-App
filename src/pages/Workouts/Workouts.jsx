@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import * as ApiService from "../../utils/ApiServices";
 import userService from "../../utils/userService";
-import { Grid, Card, Dimmer, Segment, Image, GridRow } from "semantic-ui-react";
+import { Grid, Card, Dimmer, Segment, Image, GridRow, Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 export default function Workouts({user, handleLogout}){
     return(
@@ -15,6 +16,7 @@ export default function Workouts({user, handleLogout}){
         <Grid.Row>
           <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
             <h1>Workouts</h1>
+            <Link to="/workouts/new"><Button>Create Workout</Button></Link>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
