@@ -20,7 +20,7 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
     const [wrkot, setWrkot] = useState({})
     const [excercise, setExcercise] = useState({})
     const workoutID = useParams();
-    //console.log(workoutID, 'workoutId')
+    console.log(workoutID, 'workoutId')
 
     async function findWO(WO){
         const workOut = await workoutService.find(WO);
@@ -39,13 +39,15 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
 
     useEffect(() =>{
         findWO(workoutID)
+        console.log(wrkot, "inEffect")
     },[])
 
     useEffect(() =>{
         console.log('changed')
         workoutService.addExcercise(wrkot,excercise)
+        findWO(workoutID)
     },[excercise])
-
+    console.log(wrkot, "workout Found")
   return (
     <Grid centered>
       <Grid.Row>

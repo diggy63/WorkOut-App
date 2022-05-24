@@ -20,8 +20,8 @@ export function createWO(WO) {
   }
 
 export function find(WOID){
-    //console.log(WOID.id, "inApiCall")
-    return fetch(`${BASE_URL}/${WOID.id}`,{
+    console.log(WOID.id, "inApiCall")
+    return fetch(`${BASE_URL}${WOID.id}`,{
         method:'GET',
         headers: {
             'Authorization': 'Bearer ' + tokenService.getToken()

@@ -16,7 +16,6 @@ async function create(req, res){
 }
 
 async function find(req,res){
-    //console.log(req.params.id);
     try {
         const WO = await Workout.findOne({_id:req.params.id});
         console.log(WO, "found workout")
@@ -28,11 +27,21 @@ async function find(req,res){
 
 }
 async function addEx(req,res){
-    //console.log(req.params);
-    const WO = await Workout.findOne({_id:req.params.wid})
-    console.log(WO);
-    const ex = await Excercise.findOne({_id:req.params.eid}) 
-    console.log(ex)
+    //console.log("adding.......");
+
+    try {
+        const WO = await Workout.findOne({_id:req.params.wid})
+        const ex = await Excercise.findOne({_id:req.params.eid})
+        WO.excercises.push(ex)
+        console.log(WO)
+        WO.save();
+        //console.log(WO.excercises, "excercises");
+    } catch (err) {
+        console.log("couldnt add excercise")
+    }
+    // WO.excercises.push(ex);
+    // WO.save();
+    // console.log(WO)
     // try {
     //     const WO = await Workout.findOne({_id:req.params.id});
     //     console.log(WO, "found workout")
