@@ -14,7 +14,7 @@ const exCat = {
 
 
 async function find(req, res) {
-  console.log(req.params)
+  //console.log(req.params)
   const sea = exCat[req.params.id];
   const options = {
     method: "GET",
@@ -74,12 +74,12 @@ async function createOrFind(req,res){
     })
     try {
         const ex = await Excersice.findOne({name:req.body.name})
-        console.log("already created")
+        //console.log("already created")
         if(!ex){
             const newEx = await Excersice.create(req.body)
             newEx.bodyPart= newbodyPart
             newEx.save();
-            console.log("new creation")
+            //console.log("new creation")
             res.status(201).json({workout:newEx})
             //console.log("res gone")
         }else{
@@ -88,7 +88,6 @@ async function createOrFind(req,res){
        //console.log(ex)
         
     } catch (err) {
-        // createNew(req.body, newbodyPart);
         console.log("couldnt find or create one")
         return res.status(401).json(err);
         
@@ -96,10 +95,7 @@ async function createOrFind(req,res){
 }
 
 
-async function createNew(data, bodyPart){
-    console.log(data)
-    console.log(bodyPart)
-}
+
 
 
 

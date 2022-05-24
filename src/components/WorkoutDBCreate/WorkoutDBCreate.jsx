@@ -10,10 +10,10 @@ export default function WorkoutDBCreate(){
         description: '',
     })
     async function handleSubmit(e){
+      console.log("click")
         e.preventDefault();
-        console.log("create")
         const newWO = await workoutService.createWO(workout);
-        console.log(newWO.workout._id)
+        //console.log(newWO.workout._id)
         navigate(`/workouts/${newWO.workout._id}`)
     }
 

@@ -17,7 +17,7 @@ import AddToWorkout from "../../components/AddToWorkout/AddToWorkout";
 import WorkoutFrom from "../../components/WorkoutFrom.jsx/WorkoutFrom";
 
 export default function Workouts({ user, handleLogout, exs, changeSearch }) {
-    const [wrkot, setWrkot] = useState({})
+    const [wrkot, setWrkot] = useState([])
     const [excercise, setExcercise] = useState({})
     const workoutID = useParams();
     console.log(workoutID, 'workoutId')
@@ -26,6 +26,7 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
         const workOut = await workoutService.find(WO);
         //console.log(workOut)
         setWrkot(workOut.workout);
+        console.log(wrkot, "check excercises")
     }
 
      async function handleAdd(data){
@@ -37,17 +38,21 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
         setExcercise(excercise.workout);
     }
 
+    async function handleExToWo(){
+      const addex = await workoutService.addExcercise(wrkot,excercise)
+      setWrkot(addex.workout);
+      console.log(addex.workout, "returned value")
+    }
+
     useEffect(() =>{
         findWO(workoutID)
-        console.log(wrkot, "inEffect")
+        //console.log(wrkot, "inEffect")
     },[])
 
     useEffect(() =>{
-        console.log('changed')
-        workoutService.addExcercise(wrkot,excercise)
-        findWO(workoutID)
+        handleExToWo()
     },[excercise])
-    console.log(wrkot, "workout Found")
+    //console.log(wrkot, "workout Found")
   return (
     <Grid centered>
       <Grid.Row>

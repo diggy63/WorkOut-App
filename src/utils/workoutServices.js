@@ -20,7 +20,7 @@ export function createWO(WO) {
   }
 
 export function find(WOID){
-    console.log(WOID.id, "inApiCall")
+    //console.log(WOID.id, "inApiCall")
     return fetch(`${BASE_URL}${WOID.id}`,{
         method:'GET',
         headers: {
@@ -43,5 +43,13 @@ export function addExcercise(WOID, EID){
     }).then(res => {
         if(res.ok) return res.json();
         throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
+      })
+}
+
+export function getAll(){
+  return fetch(BASE_URL,
+
+    ).then(res => {
+        if(res.ok) return res.json();
       })
 }

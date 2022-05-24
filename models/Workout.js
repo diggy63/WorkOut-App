@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const excerciseSchema = new mongoose.Schema({
     name: String,
-    decription: String,
-    bodypart: String,
+    description: String,
+    bodyPart: String,
 } , {
     timestamp: true
 })

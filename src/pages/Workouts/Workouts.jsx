@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import { Grid, Card, Dimmer, Segment, Image, GridRow, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import WorkoutFeed from "../../components/WorkoutFeed/WorkoutFeed";
 
 export default function Workouts({user, handleLogout}){
     return(
@@ -19,6 +20,7 @@ export default function Workouts({user, handleLogout}){
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
+            <WorkoutFeed />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
