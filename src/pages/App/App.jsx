@@ -13,7 +13,7 @@ import * as ApiService from "../../utils/ApiServices";
 function App() {
 
   const [exs, setExs] = useState([]);
-  const [search, SetSearch] = useState("Chest");
+  const [search, setSearch] = useState("Chest");
   const [disEx, setDisEX] = useState({});
   const [img, setImg] = useState({});
 
@@ -74,6 +74,10 @@ function App() {
     // setImg(imgFind);
   }
 
+  async function changeSearch(data){
+    setSearch(data)
+  }
+
 
 
 
@@ -105,7 +109,7 @@ function App() {
         <Route path="/" element={<Home user={user} handleLogout={handleLogout} />} />
         <Route path="/exercises" element={<Excersices user={user} handleLogout={handleLogout} />} />
         <Route path="/workouts" element={<Workouts user={user} handleLogout={handleLogout} />} />
-        <Route path="/workouts/new" element={<CreateWorkout user={user} handleLogout={handleLogout} exs={exs}  />} />
+        <Route path="/workouts/new" element={<CreateWorkout user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
         <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

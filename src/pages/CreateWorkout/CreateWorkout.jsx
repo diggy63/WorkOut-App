@@ -14,7 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import AddToWorkout from "../../components/AddToWorkout/AddToWorkout";
 
-export default function Workouts({ user, handleLogout, exs }) {
+export default function Workouts({ user, handleLogout, exs , changeSearch}) {
   return (
     <Grid centered>
       <Grid.Row>
@@ -27,7 +27,6 @@ export default function Workouts({ user, handleLogout, exs }) {
           <h1>New Workout</h1>
         </Grid.Column>
       </Grid.Row>
-      <Card>
         <Grid.Row>
           <Card.Group itemsPerRow={2} stackable>
             <Grid.Column textAlign="center" style={{ maxWidth: 400 }}>
@@ -35,11 +34,10 @@ export default function Workouts({ user, handleLogout, exs }) {
             </Grid.Column>
             <Grid.Column textAlign="center" style={{ maxWidth: 800 }}>
               <h2>excercises</h2>
-              <AddToWorkout exs={exs} />
+              <AddToWorkout exs={exs} changeSearch={changeSearch} textAlign="center"/>
             </Grid.Column>
           </Card.Group>
         </Grid.Row>
-      </Card>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 1200 }}></Grid.Column>
       </Grid.Row>

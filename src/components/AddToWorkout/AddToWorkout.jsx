@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import { Card } from "semantic-ui-react";
+import { Card, GridColumn, Grid } from "semantic-ui-react";
 import Excercise from "../Excercise/Excercise";
 import { Dropdown } from "semantic-ui-react";
 
 
-export default function AddToW({exs}){
+export default function AddToW({exs, changeSearch}){
   const [search, setSearch] = useState("Chest");
     const workoutOptions = [
         {
@@ -45,7 +45,8 @@ export default function AddToW({exs}){
       ];
 
     function handleChange(e){
-      setSearch(e.target.value)
+      setSearch(e.target.value);
+      changeSearch(e.target.innerText);
     }
 
 
@@ -56,8 +57,9 @@ export default function AddToW({exs}){
         );
       });
     return(
-        <Card.Group itemsPerRow={2} stackable>
-            <Dropdown
+      <>
+      <Grid.Column textAlign="center">
+        <Dropdown
             style={{ maxWidth: 200 }}
             placeholder="Select Zone"
             value={search}
@@ -66,7 +68,11 @@ export default function AddToW({exs}){
             options={workoutOptions}
             onChange={handleChange}
           />
+        <Card.Group itemsPerRow={2} stackable>
+          
                 {excers}
         </Card.Group>
+        </Grid.Column>
+        </>
     )
 }
