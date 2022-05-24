@@ -47,7 +47,7 @@ async function findImg(req, res) {
     axios
       .request(imgOptions)
       .then(function (response) {
-        console.log(response.data);
+        //console.log(response.data);
         res.status(200).json(response.data);
       })
       .catch(function (error) {

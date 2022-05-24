@@ -9,6 +9,7 @@ import Excersices from "../Exercises/Exercises";
 import Workouts from "../Workouts/Workouts";
 import CreateWorkout from "../CreateWorkout/CreateWorkout"
 import * as ApiService from "../../utils/ApiServices";
+import MakeWorkoutInDB from "../MakeWorkoutnDB/MakeWokoutInDb"
 
 function App() {
 
@@ -68,7 +69,7 @@ function App() {
   async function makeApiCall() {
     const finding = await ApiService.find(search);
     //const imgFind = await ApiService.findImg();
-    console.log(finding, "finding");
+    //console.log(finding, "finding");
     setExs(finding.results);
     // console.log(imgFind, "img");
     // setImg(imgFind);
@@ -109,7 +110,8 @@ function App() {
         <Route path="/" element={<Home user={user} handleLogout={handleLogout} />} />
         <Route path="/exercises" element={<Excersices user={user} handleLogout={handleLogout} />} />
         <Route path="/workouts" element={<Workouts user={user} handleLogout={handleLogout} />} />
-        <Route path="/workouts/new" element={<CreateWorkout user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
+        <Route path="/workouts/new" element={<MakeWorkoutInDB user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
+        <Route path="/workouts/:id" element={<CreateWorkout user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
         <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

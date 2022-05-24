@@ -50,7 +50,7 @@ export default function AddToW({exs, changeSearch}){
     }
 
 
-    console.log(exs)
+    //console.log(exs)
     const excers = exs.map((data, i) => {
         return (
             <Excercise key={i} data={data}/>
