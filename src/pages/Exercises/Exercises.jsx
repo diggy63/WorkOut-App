@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import * as ApiService from "../../utils/ApiServices";
-import userService from "../../utils/userService";
 import { Grid, Card, Dimmer, Segment, Image, GridRow } from "semantic-ui-react";
 import ExcerciseFeed from "../../components/ExcerciseFeed/ExcerciseFeed";
 import { Dropdown } from "semantic-ui-react";

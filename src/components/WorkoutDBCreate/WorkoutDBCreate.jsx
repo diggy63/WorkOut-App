@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button, Form, Grid, Header, Image, Segment, TextArea } from 'semantic-ui-react'
 import * as workoutService from "../../utils/workoutServices"
 

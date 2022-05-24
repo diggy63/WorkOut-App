@@ -3,7 +3,7 @@ import { Grid, Button, Card } from "semantic-ui-react";
 
 
 export default function WorkoutFrom({workout}){
-    console.log(workout)
+    //console.log(workout)
     return(
 
         <Grid.Column textAlign="center">

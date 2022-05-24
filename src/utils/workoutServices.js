@@ -34,10 +34,10 @@ export function find(WOID){
 }
 
 
-export function addExcercise(WOID,EID){
-    console.log(WOID.id, "inApiCall")
-    console.log(EID.id)
-    return fetch(`${BASE_URL}/${WOID.id}/add/${EID.id}`,{
+export function addExcercise(WOID, EID){
+    console.log(WOID)
+    console.log(EID)
+    return fetch(BASE_URL, {
         method:'PUT',
         headers: {
             'Authorization': 'Bearer ' + tokenService.getToken()
@@ -46,5 +46,4 @@ export function addExcercise(WOID,EID){
         if(res.ok) return res.json();
         throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
       })
-
 }

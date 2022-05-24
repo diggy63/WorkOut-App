@@ -14,6 +14,7 @@ const exCat = {
 
 
 async function find(req, res) {
+  console.log(req.params)
   const sea = exCat[req.params.id];
   const options = {
     method: "GET",
@@ -63,6 +64,7 @@ async function findImg(req, res) {
 }
 
 async function createOrFind(req,res){
+  console.log("findorcreate")
     let newbodyPart = '';
     //console.log(req.body.name, ",<---------req.body")
     Object.keys(exCat).forEach(e =>{
@@ -79,8 +81,10 @@ async function createOrFind(req,res){
             newEx.save();
             console.log(newEx, "new creation")
             res.status(201).json({workout:newEx})
+            //console.log("res gone")
+        }else{
+            res.status(200).json({workout:ex})
         }
-        res.status(200).json({workout:ex})
        //console.log(ex)
         
     } catch (err) {

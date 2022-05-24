@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
-import * as ApiService from "../../utils/ApiServices";
-import userService from "../../utils/userService";
 import * as workoutService from "../../utils/workoutServices"
 import { useParams } from "react-router-dom";
-import * as excerciseService from "../../utils/excerciseService"
+import * as excerciseService from '../../utils/excerciseServices'
 import {
   Grid,
   Card,
@@ -31,8 +29,10 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
     }
 
      async function handleAdd(data){
-        //console.log(data)
+        //console.log(data, "in handleAdd")
+        //console.log("clickup")
         const excercise = await excerciseService.createOrFind(data)
+        //console.log(excercise.workout, "changed")
         //console.log(excercise.workout, 'in the creatworkout component')
         setExcercise(excercise.workout);
     }
@@ -40,7 +40,9 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
     useEffect(() =>{
         findWO(workoutID)
     },[])
+
     useEffect(() =>{
+        console.log('changed')
         workoutService.addExcercise(wrkot,excercise)
     },[excercise])
 

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
-import * as ApiService from "../../utils/ApiServices";
-import userService from "../../utils/userService";
 import { Grid, Card, Dimmer, Segment, Image, GridRow, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 

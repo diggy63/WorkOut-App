@@ -13,10 +13,6 @@ export default function Excercise({data, handleAdd}){
     function handleClick(e){
         handleAdd(data);
     }
-
-
-
-    console.log(data.description.innerHtml)
     return(
         <Card raised>
             <Card.Header>
