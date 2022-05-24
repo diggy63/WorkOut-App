@@ -1,3 +1,6 @@
+const Excersice = require("../models/Excercise");
+const findOrCreate = require('mongoose-find-or-create')
+
 const axios = require("axios");
 const exCat = {
   Abs: 10,
@@ -8,6 +11,7 @@ const exCat = {
   Legs: 9,
   Shoulders: 13,
 };
+
 
 async function find(req, res) {
   const sea = exCat[req.params.id];
@@ -58,7 +62,46 @@ async function findImg(req, res) {
   }
 }
 
+async function createOrFind(req,res){
+    let newbodyPart = '';
+    //console.log(req.body.name, ",<---------req.body")
+    Object.keys(exCat).forEach(e =>{
+        if(req.body.category === exCat[e]){ 
+        newbodyPart = e;
+        }
+    })
+    try {
+        const ex = await Excersice.findOne({name:req.body.name})
+        console.log(ex, "already created")
+        if(!ex){
+            const newEx = await Excersice.create(req.body)
+            newEx.bodyPart= newbodyPart
+            newEx.save();
+            console.log(newEx, "new creation")
+            res.status(201).json({workout:newEx})
+        }
+        res.status(200).json({workout:ex})
+       //console.log(ex)
+        
+    } catch (err) {
+        // createNew(req.body, newbodyPart);
+        console.log("couldnt find or create one")
+        return res.status(401).json(err);
+        
+    }
+}
+
+
+async function createNew(data, bodyPart){
+    console.log(data)
+    console.log(bodyPart)
+}
+
+
+
+
 module.exports = {
   find,
   findImg,
+  createOrFind,
 };

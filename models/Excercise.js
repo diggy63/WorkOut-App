@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const excerciseSchema = new mongoose.Schema(
     {
+      name: {type: String, unique:true},
       description: String,
       imgUrl: String,
       bodyPart: String,

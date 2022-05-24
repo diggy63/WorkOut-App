@@ -4,7 +4,7 @@ import Excercise from "../Excercise/Excercise";
 import { Dropdown } from "semantic-ui-react";
 
 
-export default function AddToW({exs, changeSearch}){
+export default function AddToW({exs, changeSearch, handleAdd}){
   const [search, setSearch] = useState("Chest");
     const workoutOptions = [
         {
@@ -53,7 +53,7 @@ export default function AddToW({exs, changeSearch}){
     //console.log(exs)
     const excers = exs.map((data, i) => {
         return (
-            <Excercise key={i} data={data}/>
+            <Excercise key={i} data={data} handleAdd={handleAdd}/>
         );
       });
     return(

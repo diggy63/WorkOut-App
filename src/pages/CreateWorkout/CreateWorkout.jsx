@@ -4,6 +4,7 @@ import * as ApiService from "../../utils/ApiServices";
 import userService from "../../utils/userService";
 import * as workoutService from "../../utils/workoutServices"
 import { useParams } from "react-router-dom";
+import * as excerciseService from "../../utils/excerciseService"
 import {
   Grid,
   Card,
@@ -15,20 +16,33 @@ import {
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import AddToWorkout from "../../components/AddToWorkout/AddToWorkout";
+import WorkoutFrom from "../../components/WorkoutFrom.jsx/WorkoutFrom";
 
 export default function Workouts({ user, handleLogout, exs, changeSearch }) {
     const [wrkot, setWrkot] = useState({})
+    const [excercise, setExcercise] = useState({})
     const workoutID = useParams();
-    console.log(workoutID, 'workoutId')
+    //console.log(workoutID, 'workoutId')
 
     async function findWO(WO){
         const workOut = await workoutService.find(WO);
-        setWrkot(workOut);
+        //console.log(workOut)
+        setWrkot(workOut.workout);
     }
+
+     async function handleAdd(data){
+        //console.log(data)
+        const excercise = await excerciseService.createOrFind(data)
+        //console.log(excercise.workout, 'in the creatworkout component')
+        setExcercise(excercise.workout);
+    }
+
     useEffect(() =>{
         findWO(workoutID)
     },[])
-
+    useEffect(() =>{
+        workoutService.addExcercise(wrkot,excercise)
+    },[excercise])
 
   return (
     <Grid centered>
@@ -47,11 +61,10 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
           <Grid.Column textAlign="center" style={{ maxWidth: 400 }}>
           <h2>workout</h2>
               <WorkoutFrom workout={wrkot} />
-            <h2>workout</h2>
           </Grid.Column>
           <Grid.Column textAlign="center" style={{ maxWidth: 800 }}>
             <h2>excercises</h2>
-            <AddToWorkout exs={exs} changeSearch={changeSearch} />
+            <AddToWorkout exs={exs} changeSearch={changeSearch} handleAdd={handleAdd}/>
           </Grid.Column>
         </Card.Group>
       </Grid.Row>

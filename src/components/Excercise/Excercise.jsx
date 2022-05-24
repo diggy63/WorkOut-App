@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Card } from "semantic-ui-react";
 
-export default function Excercise({data}){
+export default function Excercise({data, handleAdd}){
     // const descrip = stringToD(data.description)
     function removeHTML(str){ 
         const tmp = document.createElement("div");
@@ -9,8 +9,9 @@ export default function Excercise({data}){
         return tmp.textContent || tmp.innerText || "";
     };
     const onlyText = removeHTML(data.description); 
+    data.description = onlyText
     function handleClick(e){
-        console.log('Click')
+        handleAdd(data);
     }
 
 
