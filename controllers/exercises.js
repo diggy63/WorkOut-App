@@ -64,7 +64,7 @@ async function findImg(req, res) {
 }
 
 async function createOrFind(req,res){
-  console.log("findorcreate")
+  //console.log("findorcreate")
     let newbodyPart = '';
     //console.log(req.body.name, ",<---------req.body")
     Object.keys(exCat).forEach(e =>{
@@ -74,12 +74,12 @@ async function createOrFind(req,res){
     })
     try {
         const ex = await Excersice.findOne({name:req.body.name})
-        console.log(ex, "already created")
+        console.log("already created")
         if(!ex){
             const newEx = await Excersice.create(req.body)
             newEx.bodyPart= newbodyPart
             newEx.save();
-            console.log(newEx, "new creation")
+            console.log("new creation")
             res.status(201).json({workout:newEx})
             //console.log("res gone")
         }else{

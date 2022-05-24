@@ -35,9 +35,7 @@ export function find(WOID){
 
 
 export function addExcercise(WOID, EID){
-    console.log(WOID)
-    console.log(EID)
-    return fetch(BASE_URL, {
+    return fetch(`${BASE_URL}${WOID._id}/add/${EID._id}`, {
         method:'PUT',
         headers: {
             'Authorization': 'Bearer ' + tokenService.getToken()

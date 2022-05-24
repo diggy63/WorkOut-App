@@ -3,7 +3,7 @@ import tokenService from "./tokenService";
 const BASE_URL = "/api/exercises/";
 
 export function createOrFind(WO) {
-    console.log(WO, "in  api here")
+    //console.log(WO, "in  api here")
     return fetch(BASE_URL, {
       method: 'POST',
       body: JSON.stringify(WO),
