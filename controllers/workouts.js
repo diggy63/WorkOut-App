@@ -73,7 +73,9 @@ async function addEx(req,res){
         const ex = workout.excercises.id(req.body.id);
         ex.reps = req.body.reps
         ex.sets = req.body.sets
-        console.log(ex)
+        temp = ex
+        ex.remove()
+        workout.excercises.push(temp);
         workout.save().then(function(){
             console.log("save?")
         })
