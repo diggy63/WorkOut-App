@@ -1,9 +1,13 @@
 import React, {useState, useEffect} from "react";
-import { Grid, Button, Card } from "semantic-ui-react";
-
+import { Grid, Button, Form, Card, Header, Image, Segment } from "semantic-ui-react";
+import ExcerciseForm from "../ExcerciseForm/ExcerciseForm";
 
 export default function WorkoutFrom({workout}){
   const [exs, setExs] = useState([]);
+  const [repset, setRepSet] = useState({
+    reps: 0,
+    sets: 0,
+  })
 
   useEffect(() =>{
     if(workout.excercises){
@@ -11,17 +15,20 @@ export default function WorkoutFrom({workout}){
     }
   },[workout])
     
+  function handleChange(e){
+    console.log(e.target)
+    setRepSet({...repset,
+      [e.target.name]:e.target.value,
+    })
+
+  }
 
 
     const mapEx =  exs.map((data, i) => {
       //console.log(data)
       return (
           <Card centered key={i}>
-              <Card.Header>{data.name}</Card.Header>
-              <Card.Content>{data.bodyPart}</Card.Content>
-              <Card.Content>
-              <Card.Description>{data.description}</Card.Description>
-              </Card.Content>
+            <ExcerciseForm data={data} />
 
           </Card>
       );

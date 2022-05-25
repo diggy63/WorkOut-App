@@ -27,11 +27,13 @@ async function find(req,res){
 
 }
 async function addEx(req,res){
-    //console.log("adding.......");
+    console.log(req.body, '<------------req.body');
 
     try {
         const WO = await Workout.findOne({_id:req.params.wid})
         const ex = await Excercise.findOne({_id:req.params.eid})
+        // const newEx = Workout.excercises.create();
+        // console.log(newEx)
         WO.excercises.push(ex)
         //console.log(WO)
         WO.save();
@@ -65,9 +67,23 @@ async function addEx(req,res){
      }
  }
 
+ async function changeRepSet(req,res){
+     console.log(req.body)
+     const exChange = await Workout.findOne({'excercises._id':req.body.id}).then(function(workout){
+        const ex = workout.excercises.id(req.body.id);
+        ex.reps = req.body.reps
+        ex.sets = req.body.sets
+        console.log(ex)
+        workout.save().then(function(){
+            console.log("save?")
+        })
+     })
+ }
+
 module.exports = {
     create,
     find,
     addEx,
-    getAll
+    getAll,
+    changeRepSet
   };

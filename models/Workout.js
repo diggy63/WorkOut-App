@@ -4,6 +4,9 @@ const excerciseSchema = new mongoose.Schema({
     name: String,
     description: String,
     bodyPart: String,
+    reps: {type:Number, default: 0},
+    sets: {type:Number, default: 0},
+    weight: {type:Number, default:0},
 } , {
     timestamp: true
 })

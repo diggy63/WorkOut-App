@@ -19,6 +19,10 @@ import WorkoutFrom from "../../components/WorkoutFrom.jsx/WorkoutFrom";
 export default function Workouts({ user, handleLogout, exs, changeSearch }) {
     const [wrkot, setWrkot] = useState([])
     const [excercise, setExcercise] = useState({})
+    const [repSet, setRepSet] = useState({
+      reps: 0,
+      sets: 0
+    })
     const workoutID = useParams();
     console.log(workoutID, 'workoutId')
 
@@ -29,17 +33,19 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
         console.log(wrkot, "check excercises")
     }
 
-     async function handleAdd(data){
+     async function handleAdd(data, repset){
         //console.log(data, "in handleAdd")
         //console.log("clickup")
-        const excercise = await excerciseService.createOrFind(data)
+        const excercis = await excerciseService.createOrFind(data)
         //console.log(excercise.workout, "changed")
         //console.log(excercise.workout, 'in the creatworkout component')
-        setExcercise(excercise.workout);
+        setRepSet({reps:parseInt(repset.reps), sets:parseInt(repset.sets)})
+        setExcercise(excercis.workout, repset);
+        console.log(repSet, '<-------workout in hand Add')
     }
 
     async function handleExToWo(){
-      const addex = await workoutService.addExcercise(wrkot,excercise)
+      const addex = await workoutService.addExcercise(wrkot,excercise,repSet)
       setWrkot(addex.workout);
       console.log(addex.workout, "returned value")
     }

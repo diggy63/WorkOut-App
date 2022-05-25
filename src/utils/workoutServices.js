@@ -34,17 +34,20 @@ export function find(WOID){
 }
 
 
-export function addExcercise(WOID, EID){
+export function addExcercise(WOID, EID, repSet){
     return fetch(`${BASE_URL}${WOID._id}/add/${EID._id}`, {
-        method:'PUT',
-        headers: {
-            'Authorization': 'Bearer ' + tokenService.getToken()
-          }
+      method: 'POST',
+      body: JSON.stringify(repSet),
+      headers: new Headers({ "Content-Type": "application/json",
+      'Authorization': 'Bearer ' + tokenService.getToken()
+     }),
+    
     }).then(res => {
-        if(res.ok) return res.json();
-        throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
-      })
-}
+      if(res.ok) return res.json();
+      throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
+    })
+  }
+  
 
 export function getAll(){
   return fetch(BASE_URL,
@@ -52,4 +55,20 @@ export function getAll(){
     ).then(res => {
         if(res.ok) return res.json();
       })
+}
+
+
+export function changRepSet(ExInfo){
+  console.log(ExInfo, "inApi")
+  return fetch(`${BASE_URL}exs/repset`, {
+    method: 'POST',
+    body: JSON.stringify(ExInfo),
+    headers: new Headers({ "Content-Type": "application/json",
+    'Authorization': 'Bearer ' + tokenService.getToken()
+   }),
+  
+  }).then(res => {
+    if(res.ok) return res.json();
+    throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
+  })
 }
