@@ -9,6 +9,7 @@ const excerciseSchema = new mongoose.Schema(
       bodyPart: String,
       reps: Number,
       sets: Number,
+      order: {type:Number, default: 0},
       userMade: { type: mongoose.Schema.Types.ObjectId }
     },
     {

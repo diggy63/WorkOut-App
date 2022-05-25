@@ -16,19 +16,22 @@ export default function WorkoutFrom({workout}){
   },[workout])
     
   function handleChange(e){
-    console.log(e.target)
+    //console.log(e.target)
     setRepSet({...repset,
       [e.target.name]:e.target.value,
     })
 
   }
 
-
+  function handleRepSetChange(changedWorkout){
+    //console.log(changedWorkout, 'changed workout')
+    setExs(changedWorkout.excercises)
+  }
     const mapEx =  exs.map((data, i) => {
       //console.log(data)
       return (
           <Card centered key={i}>
-            <ExcerciseForm data={data} />
+            <ExcerciseForm data={data} handleRepSetChange={handleRepSetChange}/>
 
           </Card>
       );

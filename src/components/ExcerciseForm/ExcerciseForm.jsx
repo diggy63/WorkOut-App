@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Card, Form, Button, Segment} from "semantic-ui-react";
 import * as WorkoutService from "../../utils/workoutServices"
 
-export default function ExcerciseForm({data}){
+export default function ExcerciseForm({data, handleRepSetChange}){
     const[exstate, setExstate] = useState({
         reps: 0,
         sets: 0,
@@ -17,14 +17,14 @@ export default function ExcerciseForm({data}){
     async function handleSubmit(e){
         e.preventDefault();
         const changeRS = await WorkoutService.changRepSet(exstate)
-        console.log(changeRS.excer)
-        setExstate({reps:changeRS.excer.reps})
+        //console.log(changeRS, "changerepset")
+        handleRepSetChange(changeRS.workout)
     }
     return(
         <>
         <Card.Header>{data.name}</Card.Header>
         <Card.Content>
-        <Card.Description style={{ }}>{data.description}</Card.Description>
+        {/* <Card.Description style={{ }}>{data.description}</Card.Description> */}
         </Card.Content>
         <Card.Content>Reps:{data.reps} Sets:{data.sets}</Card.Content>
         <Form autoComplete="off" onSubmit={handleSubmit}>

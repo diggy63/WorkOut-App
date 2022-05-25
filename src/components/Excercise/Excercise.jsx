@@ -32,35 +32,6 @@ export default function Excercise({data, handleAdd}){
             <Card.Description>{onlyText}</Card.Description>
         </Card.Content>
         <Card.Content>
-        <Form autoComplete="off">
-              <Segment stacked>
-                Reps
-            <Form.Input
-            type="number"
-              name="reps"
-              min="1" 
-              max="30"
-              placeholder="reps"
-              value={exstate.reps}
-              onChange={handleChange}
-              required
-            />
-            Sets
-            <Form.Input
-              type="number"
-              name="sets"
-              min="1" 
-              max="30"
-              placeholder="sets"
-              value={exstate.sets}
-              onChange={handleChange}
-              required
-            />
-            <Button type="submit" className="btn">
-              Set
-            </Button>
-          </Segment>
-          </Form>
         </Card.Content>
         <Button onClick={handleClick}>Add</Button>
         </Card>

@@ -10,6 +10,7 @@ import Workouts from "../Workouts/Workouts";
 import CreateWorkout from "../CreateWorkout/CreateWorkout"
 import * as ApiService from "../../utils/ApiServices";
 import MakeWorkoutInDB from "../MakeWorkoutnDB/MakeWokoutInDb"
+import WorkoutDetails from "../WorkoutDetails/WorkoutDetails"
 
 function App() {
 
@@ -111,7 +112,8 @@ function App() {
         <Route path="/exercises" element={<Excersices user={user} handleLogout={handleLogout} />} />
         <Route path="/workouts" element={<Workouts user={user} handleLogout={handleLogout} />} />
         <Route path="/workouts/new" element={<MakeWorkoutInDB user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
-        <Route path="/workouts/:id" element={<CreateWorkout user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
+        <Route path="/workouts/create/:id" element={<CreateWorkout user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
+        <Route path="/workouts/:id" element={<WorkoutDetails user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
         <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

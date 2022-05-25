@@ -14,7 +14,7 @@ export default function WorkoutDBCreate(){
         e.preventDefault();
         const newWO = await workoutService.createWO(workout);
         //console.log(newWO.workout._id)
-        navigate(`/workouts/${newWO.workout._id}`)
+        navigate(`/workouts/create/${newWO.workout._id}`)
     }
 
     function handleChange(e){
