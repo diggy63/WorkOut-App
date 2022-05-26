@@ -18,9 +18,21 @@ export function createWO(WO) {
       throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
     })
   }
+  export function makeNewTrack(WO) {
+    //console.log(WO, "inApi")
+    return fetch(`${BASE_URL}track/${WO}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + tokenService.getToken()
+      }
+    }).then(res => {
+      if(res.ok) return res.json();
+      throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
+    })
+  }
 
 export function find(WOID){
-    //console.log(WOID.id, "inApiCall")
+    console.log(WOID.id, "inApiCall")
     return fetch(`${BASE_URL}${WOID.id}`,{
         method:'GET',
         headers: {

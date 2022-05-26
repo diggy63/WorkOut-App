@@ -12,6 +12,11 @@ const excerciseSchema = new mongoose.Schema({
     timestamp: true
 })
 
+const likesSchema = mongoose.Schema({
+  username: String,
+  userId: { type: mongoose.Schema.Types.ObjectId }
+})
+
 
 const workoutSchema = new mongoose.Schema(
     {  
@@ -19,7 +24,8 @@ const workoutSchema = new mongoose.Schema(
       description: String,
       excercises: [excerciseSchema],
       userCreated: { type: mongoose.Schema.Types.ObjectId },
-      userCompleted: { type: mongoose.Schema.Types.ObjectId }
+      userCompleted: { type: mongoose.Schema.Types.ObjectId },
+      likes: [likesSchema]
       
     },
     {

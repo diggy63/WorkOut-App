@@ -7,6 +7,7 @@ router.post('/:wid/add/:eid', woCtrl.addEx)
 router.post('/exs/repset', woCtrl.changeRepSet);
 router.post('/', woCtrl.create);
 router.get('/:id', woCtrl.find)
+router.post('/track/:id', woCtrl.track)
 
 
 

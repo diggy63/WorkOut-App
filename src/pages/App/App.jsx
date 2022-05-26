@@ -11,7 +11,8 @@ import CreateWorkout from "../CreateWorkout/CreateWorkout"
 import * as ApiService from "../../utils/ApiServices";
 import MakeWorkoutInDB from "../MakeWorkoutnDB/MakeWokoutInDb"
 import WorkoutDetails from "../WorkoutDetails/WorkoutDetails"
-
+import Profile from "../ProfilePage/ProfilePage"
+import TrackWorkout from "../TrackWorkout/TrackWorkout";
 function App() {
 
   const [exs, setExs] = useState([]);
@@ -114,6 +115,8 @@ function App() {
         <Route path="/workouts/new" element={<MakeWorkoutInDB user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
         <Route path="/workouts/create/:id" element={<CreateWorkout user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
         <Route path="/workouts/:id" element={<WorkoutDetails user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
+        <Route path="/:id" element={<Profile user={user} handleLogout={handleLogout} />} />
+        <Route path="/workouts/track/:id" element={<TrackWorkout user={user} handleLogout={handleLogout} />} />
         <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

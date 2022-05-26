@@ -25,6 +25,7 @@ app.use(require("./config/auth"));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/workouts", require("./routes/api/workouts"));
 app.use("/api/exercises", require("./routes/api/exercises"));
+app.use("/api/likes", require("./routes/api/likes"));
 
 
 // "catch all" route

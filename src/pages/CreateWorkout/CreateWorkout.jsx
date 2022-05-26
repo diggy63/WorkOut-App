@@ -24,13 +24,13 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
       sets: 0
     })
     const workoutID = useParams();
-    console.log(workoutID, 'workoutId')
+    //console.log(workoutID, 'workoutId')
 
     async function findWO(WO){
         const workOut = await workoutService.find(WO);
         //console.log(workOut)
         setWrkot(workOut.workout);
-        console.log(wrkot, "check excercises")
+        //console.log(wrkot, "check excercises")
     }
 
      async function handleAdd(data, repset){
@@ -41,7 +41,7 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
         //console.log(excercise.workout, 'in the creatworkout component')
         setRepSet({reps:parseInt(repset.reps), sets:parseInt(repset.sets)})
         setExcercise(excercis.workout, repset);
-        console.log(repSet, '<-------workout in hand Add')
+        //console.log(repSet, '<-------workout in hand Add')
     }
 
     async function handleExToWo(){
@@ -77,7 +77,7 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
           <h2>workout</h2>
               <WorkoutFrom workout={wrkot} />
           </Grid.Column>
-          <Grid.Column textAlign="center" style={{ maxWidth: 800 }}>
+          <Grid.Column textAlign="center" style={{ maxWidth: 800}}>
             <h2>excercises</h2>
             <AddToWorkout exs={exs} changeSearch={changeSearch} handleAdd={handleAdd}/>
           </Grid.Column>

@@ -76,10 +76,26 @@ async function addEx(req,res){
      })
  }
 
+ async function track(req,res){
+     console.log(req.params)
+     try {
+         const WO = await Workout.findById(req.params.id)
+         //console.log(WO.userCompleted)
+         const newWo = await Workout.create(WO)
+         newWo.userCompleted = req.user;
+         newWo.save()
+         res.status(201).json({workout:newWo})
+     } catch (err) {
+        console.log("couldnt Create new Tracked Workout");
+        res.status(400).json(err);
+     }
+ }
+
 module.exports = {
     create,
     find,
     addEx,
     getAll,
-    changeRepSet
+    changeRepSet,
+    track,
   };
