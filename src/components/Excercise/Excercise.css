@@ -1,7 +1,10 @@
 .none{
     display: none;
 }
-
+.displayNone{
+    color: black;
+    font-size: 18px;
+}
 
 .parent:hover .none{
     display:block;

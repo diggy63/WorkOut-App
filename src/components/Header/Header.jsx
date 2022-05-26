@@ -6,7 +6,8 @@ import { Header, Segment, Image, Icon } from "semantic-ui-react";
 
 export default function Head({user, handleLogout}) {
   return (
-    <Segment clearing>
+    <Segment className="background" inverted color="grey" clearing>
+    <div className="bg">
       <Header as="h2" floated="right">
         <Link className="navBarLink" to="/">
           <Icon name="home"></Icon>
@@ -29,6 +30,7 @@ export default function Head({user, handleLogout}) {
           ></Image>
         </Link>
       </Header>
+      </div>
     </Segment>
   );
 }

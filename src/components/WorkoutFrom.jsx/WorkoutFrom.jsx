@@ -33,10 +33,8 @@ export default function WorkoutFrom({workout}){
     const mapEx =  exs.map((data, i) => {
       //console.log(data)
       return (
-          <Card centered key={i}>
-            <ExcerciseForm data={data} handleRepSetChange={handleRepSetChange}/>
+            <ExcerciseForm key={i} data={data} handleRepSetChange={handleRepSetChange}/>
 
-          </Card>
       );
     })
 
@@ -49,9 +47,9 @@ export default function WorkoutFrom({workout}){
 
 
     return(
-
-        <Card className="fixed">
-          <Card.Header>
+      <Segment inverted color="grey">
+        <Card className="black">
+          <Card.Header as="h2">
           {workout.workoutName}
           </Card.Header>
           <Card.Content>
@@ -62,5 +60,6 @@ export default function WorkoutFrom({workout}){
           </Card.Content>
           <Button onClick={handleClick}>Done</Button>
         </Card>
+        </Segment>
     )
 }

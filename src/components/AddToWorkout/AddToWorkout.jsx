@@ -59,7 +59,7 @@ export default function AddToW({exs, changeSearch, handleAdd}){
       });
     return(
       <>
-      <Segment>
+      <Segment inverted color='grey'>
       <Grid.Row>
         <Grid.Column className="flexcenter" floated="right">
         <Dropdown

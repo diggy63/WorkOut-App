@@ -13,7 +13,8 @@ import {
 import { Link, useParams } from "react-router-dom";
 import WorkoutShow from "../../components/WorkoutShow/WorkoutShow";
 import * as workoutServices from "../../utils/workoutServices";
-import * as likesAPI from "../../utils/likeApi"
+import * as likesAPI from "../../utils/likeApi";
+import "./WorkoutDetails.css"
 
 export default function Workouts({ user, handleLogout }) {
   const [workout, setWorkout] = useState({});
@@ -62,12 +63,13 @@ export default function Workouts({ user, handleLogout }) {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
-          <h1>Workout</h1>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-      <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
+      <Grid.Column textAlign="center" width={10}>
+          <Segment centered>
           <WorkoutShow workout={workout} user={user} addLike={addLike} removeLike={removeLike} />
+          </Segment>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>

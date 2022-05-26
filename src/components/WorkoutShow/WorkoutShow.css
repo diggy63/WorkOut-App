@@ -1,0 +1,7 @@
+.flexcenter{
+    display: flex;
+    text-align: center;
+    margin: 10px;
+    flex-direction: column;
+    align-items: center;
+}

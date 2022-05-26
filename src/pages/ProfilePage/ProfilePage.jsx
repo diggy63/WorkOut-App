@@ -64,14 +64,14 @@ export default function ProfilePage({user, handleLogout}){
       <Grid.Row className="redish">
         <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
             <Segment>
-          <h1>ProfilePage</h1>
+          <h1>Your Workouts</h1>
           </Segment>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row columns={2}>
         {/* <Card.Group itemsPerRow={2} stackable> */}
           <Grid.Column textAlign="center" style={{ maxWidth: 800 }}>
-              <Segment inverted color='blue'>
+              <Segment inverted color='grey'>
           <h2>Tracked</h2>
           </Segment>
           <Segment inverted color='grey' className="overflow">
@@ -79,7 +79,7 @@ export default function ProfilePage({user, handleLogout}){
           </Segment>
           </Grid.Column>
           <Grid.Column textAlign="center" style={{ maxWidth: 800 }}>
-              <Segment inverted color='blue'>
+              <Segment inverted color='grey'>
             <h2>Liked Workouts</h2>
             </Segment>
             <Segment inverted color='grey' className="overflow">

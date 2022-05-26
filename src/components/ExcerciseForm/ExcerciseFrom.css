@@ -1,6 +1,16 @@
 .flexy{
     display: flex;
+    margin: 10px;
+    justify-content: center;
+    text-align: center;
 }
 .workname{
     color: black;
+}
+.marginten{
+    margin-top: 10px;
+}
+
+.btn{
+    margin: 10px;
 }

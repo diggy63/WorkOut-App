@@ -5,10 +5,10 @@ export default function Excercise({data}){
     //console.log(data, "data in excercise form")
     return(
         <Card>
-            <Card.Header as="h2">
+            <Card.Header as="h3">
                 {data.name}
             </Card.Header>
-            <Card.Content as="h4">
+            <Card.Content as="h5">
                 {data.description}
             </Card.Content>
             <CardContent>

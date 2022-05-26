@@ -1,3 +1,20 @@
 .navBarLink {
     margin: 5px;
+    color: black;
   }
+
+  .bg{
+    width: 100%;
+    /* background-image: url("../../../public/pexels-leon-ardho-1552252.jpg"); 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
+    background-color: black;
+    color: black;
+}
+
+.navBarLink:hover {
+  margin: 5px;
+  color: rgb(255, 204, 101);
+}

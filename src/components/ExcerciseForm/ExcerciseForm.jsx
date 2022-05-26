@@ -23,14 +23,12 @@ export default function ExcerciseForm({data, handleRepSetChange}){
     }
     return(
         <>
-        <Card.Header>{data.name}</Card.Header>
-        <Card.Content>
-        {/* <Card.Description style={{ }}>{data.description}</Card.Description> */}
-        </Card.Content>
+        <Card>
+        <Card.Header as="h3"><div className="marginten">{data.name}</div></Card.Header>
         <Card.Content>Reps:{data.reps} Sets:{data.sets}</Card.Content>
         <Form autoComplete="off" onSubmit={handleSubmit}>
-              <Segment className="flexy">
-                Reps
+              <div className="flexy">
+                Reps:
             <Form.Input
 
             type="number"
@@ -42,7 +40,7 @@ export default function ExcerciseForm({data, handleRepSetChange}){
               onChange={handleChange}
               required
             />
-            Sets
+            Sets:
             <Form.Input
               type="number"
               name="sets"
@@ -53,12 +51,15 @@ export default function ExcerciseForm({data, handleRepSetChange}){
               onChange={handleChange}
               required
             />
-            </Segment>
+            </div>
+            <div className="btn">
             <Button type="submit" className="btn">
               Set
             </Button>
+            </div>
           
           </Form>
+          </Card>
         </>
     )
 }

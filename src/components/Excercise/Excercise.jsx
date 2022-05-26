@@ -26,7 +26,7 @@ export default function Excercise({data, handleAdd}){
     }
 
     return(
-        <Card raised>
+        <Card inverted color="black"  raised>
             <Card.Header className="displayNone">
                 <div className="displayNone">
                 {data.name}
@@ -37,7 +37,7 @@ export default function Excercise({data, handleAdd}){
                 {onlyText} 
                 </Card.Description>
         </Card.Content>
-        <Button onClick={handleClick}>Add</Button>
+        <Button secondary onClick={handleClick}>Add</Button>
         </Card>
         )
     }

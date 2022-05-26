@@ -14,6 +14,7 @@ import ExcerciseForm from "../ExcerciseForm/ExcerciseForm";
 import ExcerciseInWorkout from "../ExcerciseInWorkout/ExcerciseInWorkout";
 import * as WorkoutService from "../../utils/workoutServices"
 import { useNavigate } from "react-router-dom";
+import "./WorkoutShow.css"
 
 export default function WorkoutShow({ workout, addLike, user, removeLike }) {
     const navigate = useNavigate()
@@ -32,7 +33,7 @@ export default function WorkoutShow({ workout, addLike, user, removeLike }) {
     );
     console.log(likeIndex, "like id");
   }
-  const likeColor = likeIndex > -1 ? "red" : "grey";
+  const likeColor = likeIndex > -1 ? "blue" : "grey";
 
   function handleLike(e) {
     if(likeIndex > -1){
@@ -52,30 +53,24 @@ export default function WorkoutShow({ workout, addLike, user, removeLike }) {
       navigate('/')
   }
   return (
-    <Grid>
-    <Grid.Row>
-    <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
-      <Card centered>
-        <Card.Header>
-          <h2>{workout.workoutName}</h2>
+      <>
+      <div className="flexcenter">
+          <h1>{workout.workoutName}</h1>
           <Button onClick={handleDelete}>Delete</Button>
           <a>
             <Icon
               onClick={handleLike}
-              name={"heart"}
+              name={"thumbs up"}
               color={likeColor}
               size="large"
             />
             {/* {workout ? <h1>hey</h1> : null} */}
           </a>
-        </Card.Header>
         <Card.Group itemsPerRow={1} stackable style={{ maxWidth: 1000 }}>
         {exMap}
         </Card.Group>
-      </Card>
+        </div>
+        </>
       
-    </Grid.Column>
-    </Grid.Row>
-    </Grid>
   );
 }
