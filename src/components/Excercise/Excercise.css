@@ -2,6 +2,8 @@
     display: none;
 }
 
-.none:hover{
-    display:block
+
+.parent:hover .none{
+    display:block;
+
 }

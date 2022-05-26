@@ -27,13 +27,15 @@ export default function Excercise({data, handleAdd}){
 
     return(
         <Card raised>
-            <Card.Header>
+            <Card.Header className="displayNone">
+                <div className="displayNone">
                 {data.name}
+                </div>
             </Card.Header>
-        <Card.Content>
-            <Card.Description className="none">{onlyText}</Card.Description>
-        </Card.Content>
-        <Card.Content>
+        <Card.Content className="parent">
+            <Card.Description className="none">
+                {onlyText} 
+                </Card.Description>
         </Card.Content>
         <Button onClick={handleClick}>Add</Button>
         </Card>
