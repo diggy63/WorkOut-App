@@ -14,6 +14,8 @@ import * as likesAPI from "../../utils/likeApi"
 import LikedWorkouts from '../../components/LikedWorkouts/LikedWorkouts'
 import * as WorkoutService from "../../utils/workoutServices"
 import {useNavigate } from "react-router-dom";
+import DoneWorkouts from "../../components/DoneWorkouts/DoneWorkouts"
+
 
 
 
@@ -22,13 +24,24 @@ import {useNavigate } from "react-router-dom";
 export default function ProfilePage({user, handleLogout}){
     const navigate = useNavigate()
     const [liked, setLiked] = useState([])
+    const [done, setDone] = useState([])
     async function findLiked(){
         const WOLiked = await likesAPI.findLikedWorkouts()
         setLiked(WOLiked.workouts)
     }
+    async function findDone(){
+        const WODone = await WorkoutService.findDoneWorkouts()
+        //console.log(WODone, "WODONE")
+        setDone(WODone.workout)
+        
+
+    }
+
     useEffect(()=>{
         findLiked();
+        findDone();
     },[])
+    //console.log(done, "done in profile page")
 
     async function createNewWorkout(WOID){
         const newWO = await WorkoutService.makeNewTrack(WOID)
@@ -54,6 +67,7 @@ export default function ProfilePage({user, handleLogout}){
         <Card.Group itemsPerRow={2} stackable>
           <Grid.Column textAlign="center" style={{ maxWidth: 400 }}>
           <h2>Done</h2>
+          <DoneWorkouts done={done} />
           </Grid.Column>
           <Grid.Column textAlign="center" style={{ maxWidth: 800}}>
             <h2>Liked Workouts</h2>

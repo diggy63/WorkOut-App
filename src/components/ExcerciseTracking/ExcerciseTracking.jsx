@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, Form, Segment, Button } from "semantic-ui-react";
+import * as WorkoutServices from "../../utils/workoutServices"
 
-export default function ExcerciseTracking({ data }) {
-  const [exstate, setExstate] = useState({ weight: 0 });
-
+export default function ExcerciseTracking({ data, changeWeight }) {
+    const[exstate, setExstate] = useState({
+        weight: 0,
+        id: data._id,
+    })
   function handleChange(e) {
     setExstate({ ...exstate, [e.target.name]: e.target.value });
   }
 
-    async function handleSubmit(e) {
 
-      console.log(data._id)
+    async function handleSubmit(e) {
+        console.log('click')
+       changeWeight(exstate);
   }
 
   return (

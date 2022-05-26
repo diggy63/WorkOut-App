@@ -22,12 +22,20 @@ export default function TrackWorkout({user, handleLogout}){
     async function findWO(){
         const WO = await WorkoutService.find(para)
         setWorkout(WO.workout)
-        setExs(WO.workout.excercises)
     }
-
+    async function changeWeight(EXInfo){
+        const changeW = await WorkoutService.changeWeightDB(EXInfo)
+        //console.log(changeW.workout)
+       setExs(changeW.workout.excercises)
+    }
     useEffect(()=>{
         findWO();
-    },[])
+    },[exs])
+
+    useEffect(() =>{
+
+    })
+
     //console.log(workout)
     return (
         <Grid centered>
@@ -40,7 +48,7 @@ export default function TrackWorkout({user, handleLogout}){
           <Grid.Row>
             <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
               <h1>Track New Workout</h1>
-              <WorkoutTracking workout={workout} exs={exs} />
+              <WorkoutTracking workout={workout} changeWeight={changeWeight}  />
             </Grid.Column>
           </Grid.Row>
         </Grid>

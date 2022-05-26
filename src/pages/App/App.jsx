@@ -13,6 +13,9 @@ import MakeWorkoutInDB from "../MakeWorkoutnDB/MakeWokoutInDb"
 import WorkoutDetails from "../WorkoutDetails/WorkoutDetails"
 import Profile from "../ProfilePage/ProfilePage"
 import TrackWorkout from "../TrackWorkout/TrackWorkout";
+import DoneDetails from "../DoneDetails/Donedetails";
+
+
 function App() {
 
   const [exs, setExs] = useState([]);
@@ -117,6 +120,7 @@ function App() {
         <Route path="/workouts/:id" element={<WorkoutDetails user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
         <Route path="/:id" element={<Profile user={user} handleLogout={handleLogout} />} />
         <Route path="/workouts/track/:id" element={<TrackWorkout user={user} handleLogout={handleLogout} />} />
+        <Route path="/workouts/donedetails/:id" element={<DoneDetails user={user} handleLogout={handleLogout} />} />
         <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

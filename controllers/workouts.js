@@ -76,6 +76,22 @@ async function addEx(req,res){
      })
  }
 
+ async function changeWeight(req,res){
+    console.log(req.body)
+    const exChange = await Workout.findOne({'excercises._id':req.body.id}).then(function(workout){
+        //console.log(workout)
+       const ex = workout.excercises.id(req.body.id);
+       ex.weight = req.body.weight
+       //ex.remove()
+       //workout.excercises.push(temp);
+       console.log(ex)
+       workout.save().then(function(){
+           console.log("save?")
+           res.status(201).json({workout:workout})
+       })
+    })
+}
+
  async function track(req,res){
      console.log(req.params)
      try {
@@ -90,6 +106,17 @@ async function addEx(req,res){
         res.status(400).json(err);
      }
  }
+ async function getDone(req,res){
+     console.log(req.user);
+     try {
+        const WO = await Workout.find({'{userCompleted':req.user});
+        console.log(WO, "found done workouts")
+        res.status(200).json({workout:WO})
+    } catch (err) {
+        console.log("error in finding done workout");
+        res.status(400).json(err);
+    }
+ }
 
 module.exports = {
     create,
@@ -98,4 +125,6 @@ module.exports = {
     getAll,
     changeRepSet,
     track,
+    changeWeight,
+    getDone,
   };
