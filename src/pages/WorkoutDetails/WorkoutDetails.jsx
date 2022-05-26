@@ -66,7 +66,7 @@ export default function Workouts({ user, handleLogout }) {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column textAlign="center" style={{ maxWidth: 1000 }}>
+      <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
           <WorkoutShow workout={workout} user={user} addLike={addLike} removeLike={removeLike} />
         </Grid.Column>
       </Grid.Row>

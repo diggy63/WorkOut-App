@@ -13,10 +13,12 @@ export default function Workouts({user, handleLogout}){
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
+          <Segment>
           <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
             <h1>Workouts</h1>
             <Link to="/workouts/new"><Button>Create Workout</Button></Link>
           </Grid.Column>
+          </Segment>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>

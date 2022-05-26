@@ -10,7 +10,7 @@ export default function Liked({liked, track}){
 
     const WO = liked.map((data,i) =>{
         return(
-            <Card key={i}>
+            <Card centered key={i}>
             <Card.Header as="h2">
                 {data.workoutName}
             </Card.Header>

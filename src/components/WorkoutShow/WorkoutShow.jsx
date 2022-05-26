@@ -44,8 +44,11 @@ export default function WorkoutShow({ workout, addLike, user, removeLike }) {
     //addLike(workout._id)
   }
   return (
+    <Grid>
+    <Grid.Row>
     <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
-      <Card centered style={{ maxWidth: 1000 }}>
+    
+      <Card centered>
         <Card.Header>
           <h2>{workout.workoutName}</h2>
           <a>
@@ -58,8 +61,13 @@ export default function WorkoutShow({ workout, addLike, user, removeLike }) {
             {workout ? <h1>hey</h1> : null}
           </a>
         </Card.Header>
-        <Card.Content>{exMap}</Card.Content>
+        <Card.Group itemsPerRow={1} stackable style={{ maxWidth: 1000 }}>
+        {exMap}
+        </Card.Group>
       </Card>
+      
     </Grid.Column>
+    </Grid.Row>
+    </Grid>
   );
 }

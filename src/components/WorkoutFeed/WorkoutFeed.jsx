@@ -20,7 +20,7 @@ export default function WorkoutFeed(){
         if(!data.userCompleted){ 
         return (
             <Card centered key={i}>
-                <Card.Header>{data.workoutName}</Card.Header>
+                <Card.Header as="h2">{data.workoutName}</Card.Header>
                 <Card.Content>
                 <Card.Description>{data.description}</Card.Description>
                 </Card.Content>
@@ -31,9 +31,9 @@ export default function WorkoutFeed(){
       });
     return(
         <>
-        <h1>Workouts Here</h1>
-        
+        <Card.Group itemsPerRow={2} stackable>
         {works}
+        </Card.Group>
         </>
     )
 }

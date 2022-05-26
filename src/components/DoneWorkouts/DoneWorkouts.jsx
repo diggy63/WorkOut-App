@@ -16,7 +16,7 @@ export default function Done({done}){
     const WO = done.map((data,i) =>{
         return(
             
-            <Card key={i}>
+            <Card  centered key={i}>
              <Card.Header as="h2">
                  {data.workoutName}
              </Card.Header>
