@@ -12,10 +12,10 @@ import {
   GridRow,
   Button,
 } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+
 import AddToWorkout from "../../components/AddToWorkout/AddToWorkout";
 import WorkoutFrom from "../../components/WorkoutFrom.jsx/WorkoutFrom";
-
+import "./CreateWorkout.css"
 export default function Workouts({ user, handleLogout, exs, changeSearch }) {
     const [wrkot, setWrkot] = useState([])
     const [excercise, setExcercise] = useState({})
@@ -63,25 +63,31 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
     <Grid centered>
       <Grid.Row>
         <Grid.Column>
-          <Header user={user} handleLogout={handleLogout} />
+          <Header className="fixed" user={user} handleLogout={handleLogout} />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
+        <Grid.Column className="marginten" textAlign="center" style={{ maxWidth: 1000 }}>
+          <Segment className="marginten">
           <h1>New Workout</h1>
+          </Segment>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Card.Group itemsPerRow={2} stackable>
-          <Grid.Column textAlign="center" style={{ maxWidth: 400 }}>
+        <Grid.Column className="marginten widebody" textAlign="center" style={{ maxWidth: 300 }}>
+            <Segment>
           <h2>workout</h2>
+          </Segment>
+            <div className="fixed">
               <WorkoutFrom workout={wrkot} />
-          </Grid.Column>
-          <Grid.Column textAlign="center" style={{ maxWidth: 800}}>
+              </div>
+              </Grid.Column>
+              <Grid.Column className="marginten widebody" textAlign="center" style={{ maxWidth: 1000 }}>
+            <Segment>
             <h2>excercises</h2>
+            </Segment>
             <AddToWorkout exs={exs} changeSearch={changeSearch} handleAdd={handleAdd}/>
-          </Grid.Column>
-        </Card.Group>
+            </Grid.Column>
       </Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 1200 }}></Grid.Column>

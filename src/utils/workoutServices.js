@@ -119,3 +119,16 @@ export function findAllOfOne(WOID) {
     throw new Error("Bad Credentials! CHECK THE SERVER TERMINAL!");
   });
 }
+
+export function deleteOne(WOID) {
+  console.log(WOID, "inApiCall");
+  return fetch(`${BASE_URL}delete/${WOID}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + tokenService.getToken(),
+    },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error("Bad Credentials! CHECK THE SERVER TERMINAL!");
+  });
+}

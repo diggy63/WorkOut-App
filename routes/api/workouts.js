@@ -13,6 +13,7 @@ router.post('/exs/weight', woCtrl.changeWeight);
 router.post('/', woCtrl.create);
 router.post('/track/:id', woCtrl.track)
 router.get('/:id', woCtrl.find)
+router.delete('/delete/:id', woCtrl.deleteOne)
 
 
 

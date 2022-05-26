@@ -1,0 +1,10 @@
+.marginten{
+    margin: 10px;
+}
+
+.fixed {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+  }
+  

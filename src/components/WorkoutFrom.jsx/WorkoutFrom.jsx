@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import { Grid, Button, Form, Card, Header, Image, Segment } from "semantic-ui-react";
 import ExcerciseForm from "../ExcerciseForm/ExcerciseForm";
+import "./WorkoutFrom.css"
+import { useNavigate, Link } from "react-router-dom";
 
 export default function WorkoutFrom({workout}){
   const [exs, setExs] = useState([]);
@@ -8,6 +10,7 @@ export default function WorkoutFrom({workout}){
     reps: 0,
     sets: 0,
   })
+  const navigate = useNavigate()
 
   useEffect(() =>{
     if(workout.excercises){
@@ -37,14 +40,17 @@ export default function WorkoutFrom({workout}){
       );
     })
 
+    function handleClick(e){
+      console.log("click")
+      navigate(`/workouts/${workout._id}`)
+    }
 
 
 
 
     return(
 
-        <Grid.Column textAlign="center">
-        <Card>
+        <Card className="fixed">
           <Card.Header>
           {workout.workoutName}
           </Card.Header>
@@ -54,7 +60,7 @@ export default function WorkoutFrom({workout}){
           <Card.Content>
             {mapEx}
           </Card.Content>
+          <Button onClick={handleClick}>Done</Button>
         </Card>
-        </Grid.Column>
     )
 }

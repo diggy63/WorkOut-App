@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import { Card, GridColumn, Grid } from "semantic-ui-react";
+import { Card, GridColumn, Grid, GridRow, Segment, Image } from "semantic-ui-react";
 import Excercise from "../Excercise/Excercise";
 import { Dropdown } from "semantic-ui-react";
+import "./AddToWorkout.css"
 
 
 export default function AddToW({exs, changeSearch, handleAdd}){
@@ -58,7 +59,9 @@ export default function AddToW({exs, changeSearch, handleAdd}){
       });
     return(
       <>
-      <Grid.Column textAlign="center">
+      <Segment>
+      <Grid.Row>
+        <Grid.Column className="flexcenter" floated="right">
         <Dropdown
             style={{ maxWidth: 200 }}
             placeholder="Select Zone"
@@ -68,11 +71,15 @@ export default function AddToW({exs, changeSearch, handleAdd}){
             options={workoutOptions}
             onChange={handleChange}
           />
+          </Grid.Column>
+          </Grid.Row>
+          <Grid.Column textAlign="center">
         <Card.Group itemsPerRow={2} stackable>
           
                 {excers}
         </Card.Group>
         </Grid.Column>
+        </Segment>
         </>
     )
 }

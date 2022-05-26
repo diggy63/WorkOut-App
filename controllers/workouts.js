@@ -44,6 +44,7 @@ async function addEx(req,res){
         res.status(201).json({workout:WO})
     } catch (err) {
         console.log("couldnt add excercise")
+        res.status(400).json(err);
     }
 
 }
@@ -167,6 +168,18 @@ async function finddone(req,res){
     console.log("here")
 }
 
+async function deleteOne(req,res){
+    //console.log(req.params)
+    try {
+        const WO = await Workout.findById(req.params.id)
+        await WO.remove()
+        res.status(200).json("removed")
+    } catch (err) {
+        console.log("couldnt Delete")
+        
+    }
+}
+
 module.exports = {
     create,
     find,
@@ -178,4 +191,5 @@ module.exports = {
     getDone,
     findAllofOne,
     finddone,
+    deleteOne,
   };

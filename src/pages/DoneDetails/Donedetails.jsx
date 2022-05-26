@@ -47,8 +47,11 @@ export default function DoneDetails({user, handleLogout}){
       </Grid.Row>
       <Grid.Row>
         <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
+            <Card centered>
           <h1>Workout Details</h1>
+          
           <WorkoutDoneDetail WO={dWO} />
+          </Card>
         </Grid.Column>
       </Grid.Row>
     </Grid>

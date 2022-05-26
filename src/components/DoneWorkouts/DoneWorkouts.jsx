@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Card, Button } from "semantic-ui-react"
 import { Link, useNavigate } from "react-router-dom";
+import "./DoneWorkouts.css"
 
 export default function Done({done}){
     const navigate = useNavigate()
@@ -16,11 +17,11 @@ export default function Done({done}){
     const WO = done.map((data,i) =>{
         return(
             
-            <Card  centered key={i}>
+            <Card centered key={i}>
              <Card.Header as="h2">
-                 {data.workoutName}
+                 <div className="workname">{data.workoutName}</div>
              </Card.Header>
-            <Button onClick={() => handleClick(data._id)}>Details</Button>
+            <Button secondary onClick={() => handleClick(data._id)}>Details</Button>
             </Card>
         )
     })

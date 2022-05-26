@@ -71,18 +71,18 @@ export default function ProfilePage({user, handleLogout}){
       <Grid.Row columns={2}>
         {/* <Card.Group itemsPerRow={2} stackable> */}
           <Grid.Column textAlign="center" style={{ maxWidth: 800 }}>
-              <Segment>
+              <Segment inverted color='blue'>
           <h2>Tracked</h2>
           </Segment>
-          <Segment>
+          <Segment inverted color='grey' className="overflow">
           <DoneWorkouts done={done} />
           </Segment>
           </Grid.Column>
           <Grid.Column textAlign="center" style={{ maxWidth: 800 }}>
-              <Segment>
+              <Segment inverted color='blue'>
             <h2>Liked Workouts</h2>
             </Segment>
-            <Segment>
+            <Segment inverted color='grey' className="overflow">
             <LikedWorkouts liked={liked} track={createNewWorkout} />
             </Segment>
           </Grid.Column>

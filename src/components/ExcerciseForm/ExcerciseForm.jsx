@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {Card, Form, Button, Segment} from "semantic-ui-react";
-import * as WorkoutService from "../../utils/workoutServices"
+import * as WorkoutService from "../../utils/workoutServices";
+import "./ExcerciseFrom.css"
 
 export default function ExcerciseForm({data, handleRepSetChange}){
     const[exstate, setExstate] = useState({
@@ -28,9 +29,10 @@ export default function ExcerciseForm({data, handleRepSetChange}){
         </Card.Content>
         <Card.Content>Reps:{data.reps} Sets:{data.sets}</Card.Content>
         <Form autoComplete="off" onSubmit={handleSubmit}>
-              <Segment stacked>
+              <Segment className="flexy">
                 Reps
             <Form.Input
+
             type="number"
               name="reps"
               min="1" 
@@ -51,10 +53,11 @@ export default function ExcerciseForm({data, handleRepSetChange}){
               onChange={handleChange}
               required
             />
+            </Segment>
             <Button type="submit" className="btn">
               Set
             </Button>
-          </Segment>
+          
           </Form>
         </>
     )

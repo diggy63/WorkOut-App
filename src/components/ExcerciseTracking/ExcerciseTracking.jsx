@@ -24,15 +24,15 @@ export default function ExcerciseTracking({ data, changeWeight }) {
         Reps:{data.reps} Sets:{data.sets}
       </CardContent>
       <Card.Content>
-        {data.weight}
+        Weight:{data.weight}
         <Form autoComplete="off" onSubmit={handleSubmit}>
-          <Segment stacked>
+          <Segment>
             <Form.Input
               type="number"
               name="weight"
               min="1"
               max="1000"
-              placeholder="reps"
+              placeholder="Set Weight"
               value={exstate.weight}
               onChange={handleChange}
               required

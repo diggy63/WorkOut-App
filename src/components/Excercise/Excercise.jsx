@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { Button, Card, Form, Segment, } from "semantic-ui-react";
+import './Excercise.css'
 
 export default function Excercise({data, handleAdd}){
     const[exstate, setExstate] = useState({
@@ -20,6 +21,7 @@ export default function Excercise({data, handleAdd}){
     const onlyText = removeHTML(data.description); 
     data.description = onlyText
     function handleClick(e){
+        console.log("click")
         handleAdd(data, exstate);
     }
 
@@ -29,7 +31,7 @@ export default function Excercise({data, handleAdd}){
                 {data.name}
             </Card.Header>
         <Card.Content>
-            <Card.Description>{onlyText}</Card.Description>
+            <Card.Description className="none">{onlyText}</Card.Description>
         </Card.Content>
         <Card.Content>
         </Card.Content>

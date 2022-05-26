@@ -12,8 +12,11 @@ import {
 } from "semantic-ui-react";
 import ExcerciseForm from "../ExcerciseForm/ExcerciseForm";
 import ExcerciseInWorkout from "../ExcerciseInWorkout/ExcerciseInWorkout";
+import * as WorkoutService from "../../utils/workoutServices"
+import { useNavigate } from "react-router-dom";
 
 export default function WorkoutShow({ workout, addLike, user, removeLike }) {
+    const navigate = useNavigate()
   let exMap = "";
   if (workout.excercises) {
     exMap = workout.excercises.map((data, i) => {
@@ -43,14 +46,19 @@ export default function WorkoutShow({ workout, addLike, user, removeLike }) {
     //removeLike(workout.likes[likeIndex]._id)
     //addLike(workout._id)
   }
+  function handleDelete(e){
+      console.log("click")
+      WorkoutService.deleteOne(workout._id)
+      navigate('/')
+  }
   return (
     <Grid>
     <Grid.Row>
     <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
-    
       <Card centered>
         <Card.Header>
           <h2>{workout.workoutName}</h2>
+          <Button onClick={handleDelete}>Delete</Button>
           <a>
             <Icon
               onClick={handleLike}
@@ -58,7 +66,7 @@ export default function WorkoutShow({ workout, addLike, user, removeLike }) {
               color={likeColor}
               size="large"
             />
-            {workout ? <h1>hey</h1> : null}
+            {/* {workout ? <h1>hey</h1> : null} */}
           </a>
         </Card.Header>
         <Card.Group itemsPerRow={1} stackable style={{ maxWidth: 1000 }}>

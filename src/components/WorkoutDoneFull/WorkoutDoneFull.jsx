@@ -26,7 +26,7 @@ export default function WorkDone({WO}){
     }
     return(
         <Card centered>
-            <Card.Header>
+            <Card.Header as="h2">
                 {WO.workoutName} {WO.createdAt}
             </Card.Header>
             {exMap}

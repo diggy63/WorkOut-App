@@ -5,3 +5,8 @@ body{
     -o-background-size: cover;
     background-size: cover;
 }
+
+.overflow{
+    max-width:100%;
+    overflow: auto;
+}
