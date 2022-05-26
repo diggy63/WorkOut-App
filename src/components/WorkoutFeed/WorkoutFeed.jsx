@@ -9,7 +9,7 @@ export default function WorkoutFeed(){
     useEffect(() =>{
         getAll()
     },[])
-    console.log(workouts, "workout page")
+    //(workouts, "workout page")
     async function getAll(){
         const allWO = await workoutServices.getAll()
         //console.log(allWO.workout, 'in workouts')
@@ -17,6 +17,7 @@ export default function WorkoutFeed(){
     }
     const works = workouts.map((data, i) => {
         //console.log(data)
+        if(!data.userCompleted){ 
         return (
             <Card centered key={i}>
                 <Card.Header>{data.workoutName}</Card.Header>
@@ -26,6 +27,7 @@ export default function WorkoutFeed(){
                 <Link to={`/workouts/${data._id}`} ><Button>See Details</Button></Link>
             </Card>
         );
+        }
       });
     return(
         <>

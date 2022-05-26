@@ -4,10 +4,10 @@ const Excercise = require("../models/Excercise")
 
 
 async function create(req, res){
-    //console.log(req.body,"create")
+    console.log(req.body,"create")
     try {
         const newWorkout = await Workout.create(req.body)
-        //console.log(newWorkout)
+        console.log(newWorkout)
         res.status(201).json({workout:newWorkout})
     } catch (err) {
         console.log("error creating workout");
@@ -16,9 +16,10 @@ async function create(req, res){
 }
 
 async function find(req,res){
+    //console.log("findin.........")
     try {
         const WO = await Workout.findOne({_id:req.params.id});
-        console.log(WO, "found workout")
+        //console.log(WO, "found workout")
         res.status(200).json({workout:WO})
     } catch (err) {
         console.log("error in finding workout");
@@ -93,12 +94,32 @@ async function addEx(req,res){
 }
 
  async function track(req,res){
-     console.log(req.params)
+     //console.log(req.params)
      try {
+         let newExcers = []
          const WO = await Workout.findById(req.params.id)
-         //console.log(WO.userCompleted)
-         const newWo = await Workout.create(WO)
-         newWo.userCompleted = req.user;
+         console.log("old work out")
+         WO.excercises.forEach((data,i) =>{
+             newExcers[i] = {
+                 name:data.name,
+                 description:data.description,
+                 reps:data.reps,
+                 sets:data.sets,
+                 bodyPart:data.bodyPart,
+
+             }
+             //console.log(data)
+         })
+         //console.log(WO)
+         const newWorkout = {
+             workoutName:WO.workoutName,
+             description:WO.description,
+             excercises:newExcers,
+             userCompleted:req.user,
+
+         }
+         const newWo = await Workout.create(newWorkout)
+         console.log(newWo)
          newWo.save()
          res.status(201).json({workout:newWo})
      } catch (err) {
@@ -106,17 +127,45 @@ async function addEx(req,res){
         res.status(400).json(err);
      }
  }
+
+
+
  async function getDone(req,res){
-     console.log(req.user);
+     console.log("here");
      try {
-        const WO = await Workout.find({'{userCompleted':req.user});
-        console.log(WO, "found done workouts")
+        const WO = await Workout.find({'userCompleted':req.user});
+        console.log(WO)
         res.status(200).json({workout:WO})
     } catch (err) {
         console.log("error in finding done workout");
         res.status(400).json(err);
     }
  }
+
+
+
+
+
+ async function findAllofOne(req,res){
+     console.log("allofOne")
+     console.log(req.user)
+    console.log(req.params, "params")
+    try {
+        const WOName = await Workout.findById(req.params.id)
+        //console.log(WOName.workoutName)
+        const WO = await Workout.find({userCompleted:req.user, workoutName:WOName.workoutName});
+        console.log(WO, "found workout")
+        res.status(200).json({workout:WO})
+    } catch (err) {
+        console.log("error in finding workout");
+        res.status(400).json(err);
+    }
+
+}
+
+async function finddone(req,res){
+    console.log("here")
+}
 
 module.exports = {
     create,
@@ -127,4 +176,6 @@ module.exports = {
     track,
     changeWeight,
     getDone,
+    findAllofOne,
+    finddone,
   };

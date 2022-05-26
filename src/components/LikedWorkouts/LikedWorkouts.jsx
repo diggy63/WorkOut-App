@@ -14,9 +14,6 @@ export default function Liked({liked, track}){
             <Card.Header as="h2">
                 {data.workoutName}
             </Card.Header>
-            <Card.Content>
-                {data.description}
-            </Card.Content>
             <Button onClick={() => {handleClick(data._id)}}>Track Workout</Button>
             {/* <Link to={`/workouts/track/${data._id}`}><Button>Track Workout</Button></Link> */}
              </Card>

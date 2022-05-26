@@ -31,7 +31,7 @@ export function makeNewTrack(WO) {
 }
 
 export function find(WOID) {
-  console.log(WOID.id, "inApiCall");
+  //console.log(WOID.id, "inApiCall");
   return fetch(`${BASE_URL}${WOID.id}`, {
     method: "GET",
     headers: {
@@ -64,7 +64,7 @@ export function getAll() {
 }
 
 export function changRepSet(ExInfo) {
-  console.log(ExInfo, "inApi");
+  //console.log(ExInfo, "inApi");
   return fetch(`${BASE_URL}exs/repset`, {
     method: "POST",
     body: JSON.stringify(ExInfo),
@@ -79,7 +79,7 @@ export function changRepSet(ExInfo) {
 }
 
 export function changeWeightDB(ExInfo) {
-  console.log(ExInfo, "inApi");
+  //console.log(ExInfo, "inApi");
   return fetch(`${BASE_URL}exs/weight`, {
     method: "POST",
     body: JSON.stringify(ExInfo),
@@ -94,8 +94,22 @@ export function changeWeightDB(ExInfo) {
 }
 
 export function findDoneWorkouts() {
-  //console.log(WOID.id, "inApiCall");
-  return fetch(`${BASE_URL}getdone`, {
+  console.log("making a call");
+  return fetch(`${BASE_URL}dones`, {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + tokenService.getToken(),
+    },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error("Bad Credentials! CHECK THE SERVER TERMINAL!");
+  });
+}
+
+
+export function findAllOfOne(WOID) {
+  console.log(WOID.id, "inApiCall findallofOne");
+  return fetch(`${BASE_URL}allofone/${WOID.id}`, {
     method: "GET",
     headers: {
       Authorization: "Bearer " + tokenService.getToken(),

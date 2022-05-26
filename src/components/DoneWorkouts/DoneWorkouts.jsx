@@ -20,9 +20,6 @@ export default function Done({done}){
              <Card.Header as="h2">
                  {data.workoutName}
              </Card.Header>
-             <Card.Content>
-                 {data.description}
-            </Card.Content>
             <Button onClick={() => handleClick(data._id)}>Details</Button>
             </Card>
         )
