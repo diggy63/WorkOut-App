@@ -112,6 +112,7 @@ function App() {
   if (user) {
     return (
       <Routes>
+        <Route path="/" element={<Workouts user={user} handleLogout={handleLogout} />} />
         <Route path="/exercises" element={<Excersices user={user} handleLogout={handleLogout} />} />
         <Route path="/workouts" element={<Workouts user={user} handleLogout={handleLogout} />} />
         <Route path="/workouts/new" element={<MakeWorkoutInDB user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
