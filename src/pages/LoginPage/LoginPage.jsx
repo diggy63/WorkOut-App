@@ -49,7 +49,7 @@ export default function LoginPage(props) {
         <Grid.Column style={{ maxWidth: 450}}>
           <Segment>
           <Header as="h2" textAlign="center">
-            Log-in to your
+            Login to your
           </Header>
           <Form autoComplete="off" onSubmit={handleSubmit}>
             <Segment>
