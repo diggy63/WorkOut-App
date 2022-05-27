@@ -94,7 +94,7 @@ export function changeWeightDB(ExInfo) {
 }
 
 export function findDoneWorkouts() {
-  console.log("making a call");
+  //console.log("making a call");
   return fetch(`${BASE_URL}dones`, {
     method: "GET",
     headers: {
@@ -108,7 +108,7 @@ export function findDoneWorkouts() {
 
 
 export function findAllOfOne(WOID) {
-  console.log(WOID.id, "inApiCall findallofOne");
+  //console.log(WOID.id, "inApiCall findallofOne");
   return fetch(`${BASE_URL}allofone/${WOID.id}`, {
     method: "GET",
     headers: {
@@ -121,7 +121,7 @@ export function findAllOfOne(WOID) {
 }
 
 export function deleteOne(WOID) {
-  console.log(WOID, "inApiCall");
+  //console.log(WOID, "inApiCall");
   return fetch(`${BASE_URL}delete/${WOID}`, {
     method: "DELETE",
     headers: {

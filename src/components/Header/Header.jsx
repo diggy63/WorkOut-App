@@ -9,9 +9,6 @@ export default function Head({user, handleLogout}) {
     <Segment className="background" inverted color="grey" clearing>
     <div className="bg">
       <Header as="h2" floated="right">
-        <Link className="navBarLink" to="/">
-          <Icon name="home"></Icon>
-        </Link>
         <Link className="navBarLink" to="" onClick={handleLogout}>
           Logout
         </Link>

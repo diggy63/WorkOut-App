@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Button, Card, Form, Segment, Table } from "semantic-ui-react";
 import './Excercise.css'
 
-export default function Excercise({data, handleAdd}){
+export default function Excercise({data, handleAdd, isAdd}){
     const[exstate, setExstate] = useState({
         reps: 0,
         sets: 0,
@@ -30,21 +30,8 @@ export default function Excercise({data, handleAdd}){
         <Table.Row>
             <Table.Cell>{data.name}</Table.Cell>
             <Table.Cell>{onlyText} </Table.Cell>
-            <Table.Cell><Button secondary onClick={handleClick}>Add</Button></Table.Cell>
+            {isAdd ? <Table.Cell><Button secondary onClick={handleClick}>Add</Button></Table.Cell> : null}
           </Table.Row>
-        {/* <Card inverted color="black"  raised>
-            <Card.Header className="displayNone">
-                <div className="displayNone">
-                {data.name}
-                </div>
-            </Card.Header>
-        <Card.Content className="parent">
-            <Card.Description className="none">
-                {onlyText} 
-                </Card.Description>
-        </Card.Content>
-        <Button secondary onClick={handleClick}>Add</Button>
-        </Card> */}
         </>
         )
     }

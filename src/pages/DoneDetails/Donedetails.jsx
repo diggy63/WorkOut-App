@@ -21,17 +21,17 @@ export default function DoneDetails({user, handleLogout}){
     const [stats, setStats] = useState({})
     const [statWO, setStatWO] =useState({})
     const para = useParams();
-    console.log(para)
+    //console.log(para)
     async function findWO(){
         const WO = await Workoutservice.find(para)
-        console.log(WO, "workout")
+        //console.log(WO, "workout")
         setDWO(WO.workout)
         
         
     }
     async function findAllWO(){
         const allWO = await Workoutservice.findAllOfOne(para)
-        console.log(allWO, "allWorkouts")
+        //console.log(allWO, "allWorkouts")
         setAllWorkoutsDone(allWO.workout)
         findStats(allWO)
         
@@ -43,12 +43,11 @@ export default function DoneDetails({user, handleLogout}){
     },[])
 
     async function findStats(WO){
+        const finding = []
         WO.workout.forEach((item,i) => {
-            item.excercises.forEach((innerItem) =>{
-                console.log(innerItem)
+            item.excercises.forEach((innerItem,i) =>{
+                //console.log(innerItem)
             })
-            //console.log(item)
-            //setStatWO({...stats, timesDone: i})
         })
     }
 
@@ -64,16 +63,17 @@ export default function DoneDetails({user, handleLogout}){
         </Grid.Column>
       </Grid.Row>
       <Grid.Row columns={2}>
-        <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
+        <Grid.Column textAlign="center" style={{ maxWidth: 400 }}>
             <Card centered>
           <h1>Workout Details</h1>
           
           <WorkoutDoneDetail WO={dWO} />
           </Card>
         </Grid.Column>
-        <Grid.Column style={{ maxWidth: 1200 }}>
-            <Segment>
-            <h1>Workouts Done:{allWorkoutsD.length}</h1>
+        <Grid.Column style={{ maxWidth: 400 }}>
+            <Segment className="flexcenter">
+                <h1>Stats</h1>
+            <h4>Workouts Done:{allWorkoutsD.length}</h4>
             </Segment>
         </Grid.Column>
       </Grid.Row>

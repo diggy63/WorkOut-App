@@ -9,10 +9,10 @@ import {
     Button,
     Icon,
   } from "semantic-ui-react";
+import "./WorkoutDoneFull.css"
 
 export default function WorkDone({WO}){
     let exMap
-    console.log(WO.createdAt)
     if(WO.excercises){  
     exMap = WO.excercises.map((data,i) =>{
         return(
@@ -25,9 +25,13 @@ export default function WorkDone({WO}){
     })
     }
     return(
-        <Card centered>
-            <Card.Header as="h2">
-                {WO.workoutName} {WO.createdAt}
+        <Card width={4} centered>
+            <Card.Header>
+                <div className="flex">
+                <h2>{WO.workoutName}</h2>
+                
+                {WO.createdAt}
+                </div>
             </Card.Header>
             {exMap}
         </Card>

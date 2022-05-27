@@ -1,119 +1,119 @@
-import React, {useState} from "react";
-import { Card, GridColumn, Grid, GridRow, Segment, Image, Table, Loader } from "semantic-ui-react";
+import React, { useState } from "react";
+import {
+  Card,
+  GridColumn,
+  Grid,
+  GridRow,
+  Segment,
+  Image,
+  Table,
+  Loader,
+} from "semantic-ui-react";
 import Excercise from "../Excercise/Excercise";
 import { Dropdown } from "semantic-ui-react";
-import "./AddToWorkout.css"
+import "./AddToWorkout.css";
 
-
-export default function AddToW({exs, changeSearch, handleAdd}){
+export default function AddToW({ exs, changeSearch, handleAdd }) {
   const [search, setSearch] = useState("Chest");
-    const workoutOptions = [
-        {
-          key: "Abs",
-          text: "Abs",
-          value: "Abs",
-        },
-        {
-          key: "Arms",
-          text: "Arms",
-          value: "Arms",
-        },
-        {
-          key: "Back",
-          text: "Back",
-          value: "Back",
-        },
-        {
-          key: "Calves",
-          text: "Calves",
-          value: "Calves",
-        },
-        {
-          key: "Chest",
-          text: "Chest",
-          value: "Chest",
-        },
-        {
-          key: "Legs",
-          text: "Legs",
-          value: "Legs",
-        },
-        {
-          key: "Shoudlers",
-          text: "Shoulders",
-          value: "Shoulders",
-        },
-      ];
+  const workoutOptions = [
+    {
+      key: "Abs",
+      text: "Abs",
+      value: "Abs",
+    },
+    {
+      key: "Arms",
+      text: "Arms",
+      value: "Arms",
+    },
+    {
+      key: "Back",
+      text: "Back",
+      value: "Back",
+    },
+    {
+      key: "Calves",
+      text: "Calves",
+      value: "Calves",
+    },
+    {
+      key: "Chest",
+      text: "Chest",
+      value: "Chest",
+    },
+    {
+      key: "Legs",
+      text: "Legs",
+      value: "Legs",
+    },
+    {
+      key: "Shoudlers",
+      text: "Shoulders",
+      value: "Shoulders",
+    },
+  ];
 
-    function handleChange(e){
-      setSearch(e.target.value);
-      changeSearch(e.target.innerText);
-    }
+  function handleChange(e) {
+    setSearch(e.target.value);
+    changeSearch(e.target.innerText);
+  }
 
+  //console.log(exs)
+  const excers = exs.map((data, i) => {
+    return <Excercise key={i} data={data} handleAdd={handleAdd} isAdd={true} />;
+  });
 
-    //console.log(exs)
-    const excers = exs.map((data, i) => {
-        return (
-            <Excercise key={i} data={data} handleAdd={handleAdd}/>
-        );
-      });
-
-
-      if (exs.length === 0) {
-        return (
-          <Segment inverted color='grey'>
-      <Grid.Row>
-        <Grid.Column className="flexcenter" floated="right">
-        <Dropdown
-            style={{ maxWidth: 200 }}
-            placeholder="Select Zone"
-            value={search}
-            fluid
-            selection
-            options={workoutOptions}
-            onChange={handleChange}
-          />
+  if (exs.length === 0) {
+    return (
+      <Segment inverted color="grey">
+        <Grid.Row>
+          <Grid.Column className="flexcenter" floated="right">
+            <Dropdown
+              style={{ maxWidth: 200 }}
+              placeholder="Select Zone"
+              value={search}
+              fluid
+              selection
+              options={workoutOptions}
+              onChange={handleChange}
+            />
           </Grid.Column>
-          </Grid.Row>
-            <Loader active inline='centered' />
-            </Segment>
-        );
-      }else{ 
-    return(
+        </Grid.Row>
+        <Loader active inline="centered" />
+      </Segment>
+    );
+  } else {
+    return (
       <>
-      
-      <Segment inverted color='grey'>
-      <Grid.Row>
-        <Grid.Column className="flexcenter" floated="right">
-        <Dropdown
-            style={{ maxWidth: 200 }}
-            placeholder="Select Zone"
-            value={search}
-            fluid
-            selection
-            options={workoutOptions}
-            onChange={handleChange}
-          />
-          </Grid.Column>
+        <Segment inverted color="grey">
+          <Grid.Row>
+            <Grid.Column className="flexcenter" floated="right">
+              <Dropdown
+                style={{ maxWidth: 200 }}
+                placeholder="Select Zone"
+                value={search}
+                fluid
+                selection
+                options={workoutOptions}
+                onChange={handleChange}
+              />
+            </Grid.Column>
           </Grid.Row>
           <Grid.Column textAlign="center">
-          <Table celled>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Workout name</Table.HeaderCell>
-            <Table.HeaderCell>Description</Table.HeaderCell>
-            <Table.HeaderCell>Add</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
+            <Table celled>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>Workout name</Table.HeaderCell>
+                  <Table.HeaderCell>Description</Table.HeaderCell>
+                  <Table.HeaderCell>Add</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
 
-        <Table.Body>
-
-        {excers}
-        </Table.Body>
-      </Table>
-      </Grid.Column>
+              <Table.Body>{excers}</Table.Body>
+            </Table>
+          </Grid.Column>
         </Segment>
-        </>
-    )
-      }
+      </>
+    );
+  }
 }
