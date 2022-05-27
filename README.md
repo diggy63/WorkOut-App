@@ -6,28 +6,6 @@ Its a simple workout tracker that uses the wger api to grab excercises from its 
 Full stack MERN app that demonstrates an understanding in both frontend React library knowledge(framework if thats your flavor) and express/mongoDb backend knowledge. 
 MongoDB - Moongoose - Express - Node.js - React - SemanticUI
 
-```
-git init
-git add .
-git commit -m "first commit"
-git remote add origin git@git.generalassemb.ly:SEI-CC/test.git // this will be whatever your address will be, look at the address in the code github gives you!
-git push -u origin main
-```
+## Getting Started
+https://workouttrackerdk.herokuapp.com/diggy
 
-#### Setup the App
-
-```npm install```
-
-*DOTENV*
-
-`touch .env`
-
-add your variables
-
-```
-DATABASE_URL=mongodb://localhost:27017/testagramV2
-BUCKET_NAME=catcollectorone
-SECRET=mysecretforjwt
-```
-
-The app is configured, to use those respective key names for the database, jwt secret and aws bucket, of course you'll have your own values
