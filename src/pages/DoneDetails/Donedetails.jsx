@@ -16,8 +16,10 @@ import WorkoutDoneDetail from "../../components/WorkoutDoneFull/WorkoutDoneFull"
 
 export default function DoneDetails({user, handleLogout}){
     const [dWO, setDWO] = useState([]);
+    const [allWorkoutsD, setAllWorkoutsDone] = useState([])
     const [dEX, setEX] = useState([]);
-    const [statWO, setStatWO] =useState([])
+    const [stats, setStats] = useState({})
+    const [statWO, setStatWO] =useState({})
     const para = useParams();
     console.log(para)
     async function findWO(){
@@ -30,6 +32,8 @@ export default function DoneDetails({user, handleLogout}){
     async function findAllWO(){
         const allWO = await Workoutservice.findAllOfOne(para)
         console.log(allWO, "allWorkouts")
+        setAllWorkoutsDone(allWO.workout)
+        findStats(allWO)
         
         
     }
@@ -37,6 +41,20 @@ export default function DoneDetails({user, handleLogout}){
         findWO()
         findAllWO()
     },[])
+
+    async function findStats(WO){
+        WO.workout.forEach((item,i) => {
+            item.excercises.forEach((innerItem) =>{
+                console.log(innerItem)
+            })
+            //console.log(item)
+            //setStatWO({...stats, timesDone: i})
+        })
+    }
+
+
+
+
     return(
         <Grid centered>
       <Grid.Row>
@@ -45,13 +63,18 @@ export default function DoneDetails({user, handleLogout}){
           
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row>
+      <Grid.Row columns={2}>
         <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
             <Card centered>
           <h1>Workout Details</h1>
           
           <WorkoutDoneDetail WO={dWO} />
           </Card>
+        </Grid.Column>
+        <Grid.Column style={{ maxWidth: 1200 }}>
+            <Segment>
+            <h1>Workouts Done:{allWorkoutsD.length}</h1>
+            </Segment>
         </Grid.Column>
       </Grid.Row>
     </Grid>

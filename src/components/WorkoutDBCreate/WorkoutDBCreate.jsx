@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Grid, Header, Image, Segment, TextArea } from 'semantic-ui-react'
 import * as workoutService from "../../utils/workoutServices"
+import "./WorkoutDBCreate.css"
 
 export default function WorkoutDBCreate(){
     const navigate = useNavigate();
@@ -22,13 +23,14 @@ export default function WorkoutDBCreate(){
         [e.target.name]:e.target.value})
     }
     return(
-        <Grid textAlign="center" style={{ height: "50vh" }} verticalAlign="middle">
+        <Grid className="flexcenter" textAlign="center" style={{ height: "25vh" }} verticalAlign="middle">
+        <div className="flexcenter">
+          <Segment className="flexcenter">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" textAlign="center">
           <Header.Content>Name Your Workout</Header.Content>
         </Header>
         <Form autoComplete="off" onSubmit={handleSubmit}>
-          <Segment stacked>
             <Form.Input
               name="workoutName"
               placeholder="Workout Name"
@@ -47,10 +49,11 @@ export default function WorkoutDBCreate(){
             <Button type="submit" className="btn">
               Create Workout
             </Button>
-          </Segment>
           {/* {error ? <ErrorMessage error={error} /> : null} */}
         </Form>
       </Grid.Column>
+      </Segment>
+      </div>
     </Grid>
     )
 }

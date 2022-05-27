@@ -11,7 +11,7 @@ export default function Excercise({data}){
             <Card.Content as="h5">
                 {data.description}
             </Card.Content>
-            <CardContent>
+            <CardContent as="h5">
                 Reps: {data.reps} Sets: {data.sets}
             </CardContent>
         </Card>

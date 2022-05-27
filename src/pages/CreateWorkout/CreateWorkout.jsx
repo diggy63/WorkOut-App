@@ -68,16 +68,13 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column className="marginten" textAlign="center" style={{ maxWidth: 1000 }}>
-          <Segment className="marginten">
-          <h1>New Workout</h1>
-          </Segment>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column className="marginten widebody" textAlign="center" style={{ maxWidth: 300 }}>
+        <Grid.Column className="marginten widebody" textAlign="center" style={{ maxWidth: 400 }}>
             <Segment>
           <h2>workout</h2>
-          </Segment>
+          </Segment >
             <div className="fixed">
               <WorkoutFrom workout={wrkot} />
               </div>
