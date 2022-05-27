@@ -45,12 +45,8 @@ export default function LoginPage(props) {
 
   return (
     <>
-      <Grid
-        textAlign="center"
-       
-        verticalAlign="middle"
-      >
-        <Grid.Column style={{ maxWidth: 450 }}>
+      <Grid textAlign="center" verticalAlign="middle" style={{ height: "50vh" }}>
+        <Grid.Column style={{ maxWidth: 450}}>
           <Segment>
           <Header as="h2" textAlign="center">
             Log-in to your
