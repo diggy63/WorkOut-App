@@ -17,5 +17,6 @@ https://workouttrackerdk.herokuapp.com
   <li>Stat Section in your view done workout</li>
   <li>Sorting the database to represent the data better</li>
   <li>Adding a routine model to join workouts so you can see you routine progress</li>
+  <li>Add images to workouts</li>
  </ul>
 
