@@ -51,9 +51,11 @@ async function addEx(req,res){
  async function getAll(req,res){
      //console.log("in get all workouts controller")
      try {
-         const allWO = await Workout.find({});
+         await Workout.find({}).sort('like.length').exec(function(err,workouts){
+            res.status(200).json({workout:workouts})
+         });
          //console.log(allWO)
-         res.status(200).json({workout:allWO})
+         
      } catch (err) {
         console.log("error in finding all workout");
         res.status(400).json(err);
@@ -132,11 +134,13 @@ async function addEx(req,res){
 
 
  async function getDone(req,res){
-     console.log("here");
+     console.log("here int get d");
      try {
-        const WO = await Workout.find({'userCompleted':req.user});
-        console.log(WO)
-        res.status(200).json({workout:WO})
+        // const workouts = await Workout.find({}).sort({date: -1}).execFind(function(err,docs){ });
+        await Workout.find({'userCompleted':req.user}).sort('date').exec(function(err,workouts){
+        console.log(workouts)
+        res.status(200).json({workout:workouts})
+        })
     } catch (err) {
         console.log("error in finding done workout");
         res.status(400).json(err);

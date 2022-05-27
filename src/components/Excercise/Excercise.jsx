@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Button, Card, Form, Segment, } from "semantic-ui-react";
+import { Button, Card, Form, Segment, Table } from "semantic-ui-react";
 import './Excercise.css'
 
 export default function Excercise({data, handleAdd}){
@@ -26,7 +26,13 @@ export default function Excercise({data, handleAdd}){
     }
 
     return(
-        <Card inverted color="black"  raised>
+        <>
+        <Table.Row>
+            <Table.Cell>{data.name}</Table.Cell>
+            <Table.Cell>{onlyText} </Table.Cell>
+            <Table.Cell><Button secondary onClick={handleClick}>Add</Button></Table.Cell>
+          </Table.Row>
+        {/* <Card inverted color="black"  raised>
             <Card.Header className="displayNone">
                 <div className="displayNone">
                 {data.name}
@@ -38,6 +44,7 @@ export default function Excercise({data, handleAdd}){
                 </Card.Description>
         </Card.Content>
         <Button secondary onClick={handleClick}>Add</Button>
-        </Card>
+        </Card> */}
+        </>
         )
     }
