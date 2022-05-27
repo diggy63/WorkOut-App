@@ -61,7 +61,22 @@ export default function AddToW({exs, changeSearch, handleAdd}){
 
       if (exs.length === 0) {
         return (
+          <Segment inverted color='grey'>
+      <Grid.Row>
+        <Grid.Column className="flexcenter" floated="right">
+        <Dropdown
+            style={{ maxWidth: 200 }}
+            placeholder="Select Zone"
+            value={search}
+            fluid
+            selection
+            options={workoutOptions}
+            onChange={handleChange}
+          />
+          </Grid.Column>
+          </Grid.Row>
             <Loader active inline='centered' />
+            </Segment>
         );
       }else{ 
     return(

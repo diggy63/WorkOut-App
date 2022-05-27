@@ -18,10 +18,10 @@ import "./WorkoutShow.css"
 
 export default function WorkoutShow({ workout, addLike, user, removeLike }) {
     const navigate = useNavigate()
+    let likeslength = [];
   let exMap = "";
   if (workout.excercises) {
     exMap = workout.excercises.map((data, i) => {
-      //console.log(data)
       return <ExcerciseInWorkout key={i} data={data} />;
     });
   }
@@ -43,9 +43,12 @@ export default function WorkoutShow({ workout, addLike, user, removeLike }) {
         addLike(workout._id)
         console.log("like")
     }
-    //console.log(workout.likes[likeIndex]._id)
-    //removeLike(workout.likes[likeIndex]._id)
-    //addLike(workout._id)
+  }
+
+  if(workout.likes){
+      likeslength = workout.likes
+  }else{
+      console.log(workout.likes,"lost")
   }
   function handleDelete(e){
       console.log("click")
@@ -56,7 +59,9 @@ export default function WorkoutShow({ workout, addLike, user, removeLike }) {
       <>
       <div className="flexcenter">
           <h1>{workout.workoutName}</h1>
+          <div className="likecontainter">
           <Button onClick={handleDelete}>Delete</Button>
+          <div>
           <a>
             <Icon
               onClick={handleLike}
@@ -64,8 +69,10 @@ export default function WorkoutShow({ workout, addLike, user, removeLike }) {
               color={likeColor}
               size="large"
             />
-            {/* {workout ? <h1>hey</h1> : null} */}
           </a>
+          {workout ? `likes: ${likeslength.length}` : null}
+          </div>
+          </div>
         <Card.Group itemsPerRow={1} stackable style={{ maxWidth: 1000 }}>
         {exMap}
         </Card.Group>
