@@ -7,5 +7,5 @@ Full stack MERN app that demonstrates an understanding in both frontend React li
 MongoDB - Moongoose - Express - Node.js - React - SemanticUI
 
 ## Getting Started
-https://workouttrackerdk.herokuapp.com/diggy
+https://workouttrackerdk.herokuapp.com
 
