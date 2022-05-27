@@ -88,7 +88,9 @@ export default function Excersices({ user, handleLogout }) {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
-          <h1>title</h1>
+          <Segment>
+            <h1>All Excercises</h1>
+          </Segment>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>

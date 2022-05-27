@@ -51,12 +51,12 @@ export default function LoginPage(props) {
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
+          <Segment>
           <Header as="h2" textAlign="center">
-            <Image src="" /> Log-in to your
-            account
+            Log-in to your
           </Header>
           <Form autoComplete="off" onSubmit={handleSubmit}>
-            <Segment stacked>
+            <Segment>
               <Form.Input
                 type="email"
                 name="email"
@@ -87,6 +87,7 @@ export default function LoginPage(props) {
             New to us? <Link to="/signup">Sign Up</Link>
           </Message>
           {error ? <ErrorMessage error={error} /> : null}
+          </Segment>
         </Grid.Column>
       </Grid>
     </>
