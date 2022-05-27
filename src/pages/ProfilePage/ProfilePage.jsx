@@ -9,6 +9,7 @@ import {
     Button,
     Icon,
     Container,
+    Table,
   } from "semantic-ui-react";
 import Header from "../../components/Header/Header"
 import * as likesAPI from "../../utils/likeApi"
@@ -53,7 +54,7 @@ export default function ProfilePage({user, handleLogout}){
     }
 
     return(
-
+        <>
         <Grid centered columns='equal' className="backg">
       <Grid.Row>
         <Grid.Column>
@@ -74,20 +75,17 @@ export default function ProfilePage({user, handleLogout}){
               <Segment inverted color='grey'>
           <h2>Tracked</h2>
           </Segment>
-          <Segment inverted color='grey' className="overflow">
           <DoneWorkouts done={done} />
-          </Segment>
           </Grid.Column>
           <Grid.Column textAlign="center" style={{ maxWidth: 800 }}>
               <Segment inverted color='grey'>
             <h2>Liked Workouts</h2>
             </Segment>
-            <Segment inverted color='grey' className="overflow">
             <LikedWorkouts liked={liked} track={createNewWorkout} />
-            </Segment>
           </Grid.Column>
         {/* </Card.Group> */}
       </Grid.Row>
     </Grid>
+    </>
     )
 }

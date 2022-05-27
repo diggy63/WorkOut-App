@@ -17,7 +17,7 @@ export default function WorkoutFeed({workouts}){
             <Table.Row>
             <Table.Cell>{data.workoutName}</Table.Cell>
             <Table.Cell>{data.description}</Table.Cell>
-            <Table.Cell><Link to={`/workouts/${data._id}`} ><Button>See Details </Button></Link> likes:{data.likes.length}</Table.Cell>
+            <Table.Cell><Link to={`/workouts/${data._id}`} ><Button floated="right">See Details </Button></Link> likes:{data.likes.length}</Table.Cell>
           </Table.Row>
         );
         }
