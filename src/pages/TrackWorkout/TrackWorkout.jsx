@@ -47,11 +47,11 @@ export default function TrackWorkout({user, handleLogout}){
           </Grid.Row>
           <Grid.Row>
             <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
-                <Card  centered>
+                <Segment>
               <h1>Track New Workout</h1>
               
               <WorkoutTracking workout={workout} changeWeight={changeWeight}  />
-              </Card>
+              </Segment>
             </Grid.Column>
           </Grid.Row>
         </Grid>

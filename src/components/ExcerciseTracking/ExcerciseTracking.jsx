@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Form, Segment, Button } from "semantic-ui-react";
+import { Card, CardContent, Form, Segment, Button, Table } from "semantic-ui-react";
 import * as WorkoutServices from "../../utils/workoutServices"
+import "./ExcerciseTracking.css"
 
 export default function ExcerciseTracking({ data, changeWeight }) {
     const[exstate, setExstate] = useState({
@@ -18,16 +19,16 @@ export default function ExcerciseTracking({ data, changeWeight }) {
   }
 
   return (
-    <Card>
-      <Card.Header>{data.name}</Card.Header>
-      <CardContent>
-        Reps:{data.reps} Sets:{data.sets}
-      </CardContent>
-      <Card.Content>
+      <>
+    <Table.Row>
+    <Table.Cell>{data.name}</Table.Cell>
+    <Table.Cell>Reps:{data.reps} Sets:{data.sets} </Table.Cell>
+    <Table.Cell> 
+        <div className="flex">
         Weight:{data.weight}
         <Form autoComplete="off" onSubmit={handleSubmit}>
-          <Segment>
             <Form.Input
+                style={{ maxWidth: 200 }}
               type="number"
               name="weight"
               min="1"
@@ -37,12 +38,15 @@ export default function ExcerciseTracking({ data, changeWeight }) {
               onChange={handleChange}
               required
             />
+            <div>
             <Button type="submit" className="btn">
               Set
             </Button>
-          </Segment>
+            </div>
         </Form>
-      </Card.Content>
-    </Card>
+        </div>
+        </Table.Cell>
+  </Table.Row>
+    </>
   );
 }
