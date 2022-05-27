@@ -32,5 +32,5 @@ const workoutSchema = new mongoose.Schema(
       timestamps: true,
     }
   );
-
+  workoutSchema.index({ workoutName : 'text' })
   module.exports = mongoose.model('Workout', workoutSchema);

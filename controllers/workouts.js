@@ -176,6 +176,19 @@ async function deleteOne(req,res){
         res.status(200).json("removed")
     } catch (err) {
         console.log("couldnt Delete")
+        res.status(400).json(err);
+    }
+}
+
+async function search(req,res){
+    console.log(req.params.id)
+    try {
+        const WO = await Workout.find({$text: {$search: req.params.id}})
+        console.log(WO)
+        res.status(200).json({WorkO:WO})
+    } catch (err) {
+        console.log("search not success full")
+        res.status(400).json(err);
         
     }
 }
@@ -192,4 +205,5 @@ module.exports = {
     findAllofOne,
     finddone,
     deleteOne,
+    search,
   };

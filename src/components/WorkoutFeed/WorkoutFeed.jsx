@@ -4,17 +4,8 @@ import * as workoutServices from "../../utils/workoutServices"
 import { Grid, Button, Card } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-export default function WorkoutFeed(){
-    const [workouts, setWorkouts] = useState([])
-    useEffect(() =>{
-        getAll()
-    },[])
-    //(workouts, "workout page")
-    async function getAll(){
-        const allWO = await workoutServices.getAll()
-        //console.log(allWO.workout, 'in workouts')
-        setWorkouts(allWO.workout)
-    }
+export default function WorkoutFeed({workouts}){
+    
     const works = workouts.map((data, i) => {
         //console.log(data)
         if(!data.userCompleted){ 

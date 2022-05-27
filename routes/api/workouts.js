@@ -14,6 +14,7 @@ router.post('/', woCtrl.create);
 router.post('/track/:id', woCtrl.track)
 router.get('/:id', woCtrl.find)
 router.delete('/delete/:id', woCtrl.deleteOne)
+router.get("/search/:id", woCtrl.search)
 
 
 

@@ -132,3 +132,14 @@ export function deleteOne(WOID) {
     throw new Error("Bad Credentials! CHECK THE SERVER TERMINAL!");
   });
 }
+
+export function search(q){
+  return fetch(`${BASE_URL}search/${q.q}`,{
+    headers: {
+      Authorization: "Bearer " + tokenService.getToken(),
+    },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error("Bad Credentials! CHECK THE SERVER TERMINAL!");
+  });
+}
