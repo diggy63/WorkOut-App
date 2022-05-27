@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Card, GridColumn, Grid, GridRow, Segment, Image, Table } from "semantic-ui-react";
+import { Card, GridColumn, Grid, GridRow, Segment, Image, Table, Loader } from "semantic-ui-react";
 import Excercise from "../Excercise/Excercise";
 import { Dropdown } from "semantic-ui-react";
 import "./AddToWorkout.css"
@@ -57,6 +57,13 @@ export default function AddToW({exs, changeSearch, handleAdd}){
             <Excercise key={i} data={data} handleAdd={handleAdd}/>
         );
       });
+
+
+      if (exs.length === 0) {
+        return (
+            <Loader active inline='centered' />
+        );
+      }else{ 
     return(
       <>
       
@@ -93,4 +100,5 @@ export default function AddToW({exs, changeSearch, handleAdd}){
         </Segment>
         </>
     )
+      }
 }
