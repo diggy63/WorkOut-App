@@ -14,7 +14,6 @@ const exCat = {
 
 
 async function find(req, res) {
-  //console.log(req.params)
   const sea = exCat[req.params.id];
   const options = {
     method: "GET",
@@ -28,7 +27,6 @@ async function find(req, res) {
     axios
       .request(options)
       .then(function (response) {
-        //console.log(response.data);
         res.status(200).json(response.data);
       })
       .catch(function (error) {
@@ -38,11 +36,10 @@ async function find(req, res) {
     return res.status(401).json(err);
   }
 }
-
+//an image function that is not in use yet
 async function findImg(req, res) {
   const imgOptions = {
     method: "GET",
-    // url: 'https://wger.de/api/v2/exerciseimage/?id=3',
     url: "https://wger.de/api/v2/exerciseimage/?is_main=True",
     headers: {
       Authorization: "Token ac8d20dd5cdd6ed1a412fb06269185a7ef2f65e7",
@@ -63,8 +60,9 @@ async function findImg(req, res) {
   }
 }
 
+//create or find function 
 async function createOrFind(req,res){
-  //console.log("findorcreate")
+  //console.log()
     let newbodyPart = '';
     //console.log(req.body.name, ",<---------req.body")
     Object.keys(exCat).forEach(e =>{
@@ -75,6 +73,8 @@ async function createOrFind(req,res){
     try {
         const ex = await Excersice.findOne({name:req.body.name})
         //console.log("already created")
+        //if the search comes with new null its crates the excercise in the model
+        //its basically a get or create function
         if(!ex){
             const newEx = await Excersice.create(req.body)
             newEx.bodyPart= newbodyPart
@@ -85,7 +85,6 @@ async function createOrFind(req,res){
         }else{
             res.status(200).json({workout:ex})
         }
-       //console.log(ex)
         
     } catch (err) {
         console.log("couldnt find or create one")

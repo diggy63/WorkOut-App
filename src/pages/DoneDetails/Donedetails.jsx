@@ -42,6 +42,7 @@ export default function DoneDetails({user, handleLogout}){
         findAllWO()
     },[])
 
+    //finds all the done simliar workouts
     async function findStats(WO){
         const finding = []
         WO.workout.forEach((item,i) => {

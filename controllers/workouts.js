@@ -16,10 +16,8 @@ async function create(req, res){
 }
 
 async function find(req,res){
-    //console.log("findin.........")
     try {
         const WO = await Workout.findOne({_id:req.params.id});
-        //console.log(WO, "found workout")
         res.status(200).json({workout:WO})
     } catch (err) {
         console.log("error in finding workout");
@@ -27,9 +25,8 @@ async function find(req,res){
     }
 
 }
+//embbeds excercise into the workout model
 async function addEx(req,res){
-    //console.log(req.body, '<------------req.body');
-
     try {
         const WO = await Workout.findOne({_id:req.params.wid})
         const ex = await Excercise.findOne({_id:req.params.eid})
@@ -49,12 +46,10 @@ async function addEx(req,res){
 
 }
  async function getAll(req,res){
-     //console.log("in get all workouts controller")
      try {
          await Workout.find({}).sort('like.length').exec(function(err,workouts){
             res.status(200).json({workout:workouts})
          });
-         //console.log(allWO)
          
      } catch (err) {
         console.log("error in finding all workout");
@@ -62,42 +57,34 @@ async function addEx(req,res){
      }
  }
 
+ //changes rep and sets in a workout you are creating
  async function changeRepSet(req,res){
      console.log(req.body)
      const exChange = await Workout.findOne({'excercises._id':req.body.id}).then(function(workout){
-         //console.log(workout)
         const ex = workout.excercises.id(req.body.id);
         ex.reps = req.body.reps
         ex.sets = req.body.sets
-        temp = ex
-        //ex.remove()
-        //workout.excercises.push(temp);
         console.log(ex)
         workout.save().then(function(){
-            console.log("save?")
+            console.log("saveed")
             res.status(201).json({workout:workout})
         })
      })
  }
 
+ //changes weight in the tracked app
  async function changeWeight(req,res){
-    console.log(req.body)
     const exChange = await Workout.findOne({'excercises._id':req.body.id}).then(function(workout){
-        //console.log(workout)
        const ex = workout.excercises.id(req.body.id);
        ex.weight = req.body.weight
-       //ex.remove()
-       //workout.excercises.push(temp);
-       console.log(ex)
        workout.save().then(function(){
-           console.log("save?")
+           console.log("saved")
            res.status(201).json({workout:workout})
        })
     })
 }
-
+//Create new instance of work and also new ids for the embbed excercises so that they can be track indvidually
  async function track(req,res){
-     //console.log(req.params)
      try {
          let newExcers = []
          const WO = await Workout.findById(req.params.id)
@@ -111,9 +98,7 @@ async function addEx(req,res){
                  bodyPart:data.bodyPart,
 
              }
-             //console.log(data)
          })
-         //console.log(WO)
          const newWorkout = {
              workoutName:WO.workoutName,
              description:WO.description,
@@ -122,7 +107,6 @@ async function addEx(req,res){
 
          }
          const newWo = await Workout.create(newWorkout)
-         console.log(newWo)
          newWo.save()
          res.status(201).json({workout:newWo})
      } catch (err) {
@@ -134,11 +118,8 @@ async function addEx(req,res){
 
 
  async function getDone(req,res){
-     console.log("here int get d");
      try {
-        // const workouts = await Workout.find({}).sort({date: -1}).execFind(function(err,docs){ });
         await Workout.find({'userCompleted':req.user}).sort('date').exec(function(err,workouts){
-        console.log(workouts)
         res.status(200).json({workout:workouts})
         })
     } catch (err) {
@@ -152,14 +133,10 @@ async function addEx(req,res){
 
 
  async function findAllofOne(req,res){
-     console.log("allofOne")
-     console.log(req.user)
-    console.log(req.params, "params")
     try {
         const WOName = await Workout.findById(req.params.id)
-        //console.log(WOName.workoutName)
         const WO = await Workout.find({userCompleted:req.user, workoutName:WOName.workoutName});
-        console.log(WO, "found workout")
+        console.log("found workout")
         res.status(200).json({workout:WO})
     } catch (err) {
         console.log("error in finding workout");
@@ -168,12 +145,8 @@ async function addEx(req,res){
 
 }
 
-async function finddone(req,res){
-    console.log("here")
-}
 
 async function deleteOne(req,res){
-    //console.log(req.params)
     try {
         const WO = await Workout.findById(req.params.id)
         await WO.remove()
@@ -184,11 +157,13 @@ async function deleteOne(req,res){
     }
 }
 
+
+
 async function search(req,res){
     console.log(req.params.id)
     try {
+        //searchs for text that matchs the qeuery
         const WO = await Workout.find({$text: {$search: req.params.id}})
-        console.log(WO)
         res.status(200).json({WorkO:WO})
     } catch (err) {
         console.log("search not success full")
@@ -207,7 +182,6 @@ module.exports = {
     changeWeight,
     getDone,
     findAllofOne,
-    finddone,
     deleteOne,
     search,
   };

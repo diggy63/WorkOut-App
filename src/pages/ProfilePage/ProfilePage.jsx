@@ -28,6 +28,7 @@ export default function ProfilePage({user, handleLogout}){
     const navigate = useNavigate()
     const [liked, setLiked] = useState([])
     const [done, setDone] = useState([])
+    const [reset, setReset] = useState(false)
     async function findLiked(){
         const WOLiked = await likesAPI.findLikedWorkouts()
         setLiked(WOLiked.workouts)
@@ -44,6 +45,10 @@ export default function ProfilePage({user, handleLogout}){
         findLiked();
         findDone();
     },[])
+
+    useEffect(()=>{
+        findLiked()
+    },[reset])
     //console.log(done, "done in profile page")
 
     async function createNewWorkout(WOID){
@@ -51,6 +56,10 @@ export default function ProfilePage({user, handleLogout}){
         console.log(newWO.workout._id)
         //console.log(WOID, "profile")
        navigate(`/workouts/track/${newWO.workout._id}`)
+    }
+
+    function handleUnlikeUp(e){
+        setReset(true)
     }
 
     return(
@@ -81,7 +90,7 @@ export default function ProfilePage({user, handleLogout}){
               <Segment inverted color='grey'>
             <h2>Liked Workouts</h2>
             </Segment>
-            <LikedWorkouts liked={liked} track={createNewWorkout} />
+            <LikedWorkouts liked={liked} track={createNewWorkout} handleUnlikeUp={handleUnlikeUp} user={user} />
           </Grid.Column>
         {/* </Card.Group> */}
       </Grid.Row>

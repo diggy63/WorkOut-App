@@ -22,13 +22,14 @@ async function deleteOne(req,res){
         workout.likes.remove(req.params.id)
         console.log(workout.likes)
         await workout.save()
-        res.status(201).json({data: 'like added'})
+        res.status(201).json({data: 'like removed'})
     } catch (err) {
         console.log("error")
         res.status(400).json({err})
     }
 }
 
+//dont know if this should be in the Workout constroller but it search for all the workouts that are liked by an indivudal
 async function findAll(req,res){
     try {
         const workout = await Workout.find({'likes.username': req.user.username})
