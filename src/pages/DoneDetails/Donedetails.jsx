@@ -18,8 +18,8 @@ export default function DoneDetails({user, handleLogout}){
     const [dWO, setDWO] = useState([]);
     const [allWorkoutsD, setAllWorkoutsDone] = useState([])
     const [dEX, setEX] = useState([]);
-    const [stats, setStats] = useState({})
-    const [statWO, setStatWO] =useState({})
+    const [stats, setStats] = useState([])
+    const [statName, setStatName] =useState([])
     const para = useParams();
     //console.log(para)
     async function findWO(){
@@ -44,16 +44,33 @@ export default function DoneDetails({user, handleLogout}){
 
     //finds all the done simliar workouts
     async function findStats(WO){
-        const finding = []
-        WO.workout.forEach((item,i) => {
+        const exName = []
+        const check = []
+        await WO.workout[0].excercises.forEach((item,i) => {
+          const nammer = item.name
+          check[i] = 0
+          exName[i] = item.name
+        })
+        await WO.workout.forEach((item,i) => {
             item.excercises.forEach((innerItem,i) =>{
-                //console.log(innerItem)
+                if(check[i]<innerItem.weight){
+                  check[i] = innerItem.weight;
+                }
             })
         })
+        setStats(check)
+        setStatName(exName)
     }
 
-
-
+    const bestStats = stats.map((item,i) => {
+      return(
+        <>
+        <div>
+          Best {statName[i]} lift : {item}
+        </div>
+        </>
+      )
+    })
 
     return(
         <Grid centered>
@@ -75,6 +92,7 @@ export default function DoneDetails({user, handleLogout}){
             <Segment className="flexcenter">
                 <h1>Stats</h1>
             <h4>Workouts Done:{allWorkoutsD.length}</h4>
+            {bestStats}
             </Segment>
         </Grid.Column>
       </Grid.Row>

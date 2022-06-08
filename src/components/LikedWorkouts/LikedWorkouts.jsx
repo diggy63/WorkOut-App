@@ -5,27 +5,26 @@ import "./LikedWorkouts.css"
 import * as likeApi from "../../utils/likeApi"
 
 export default function Liked({liked, track, user, handleUnlikeUp}){
+    const [workouts, setWorkout] = useState([])
+    useEffect(() =>{
+        setWorkout(liked)
+    },[])
     let likeId
    //console.log(liked,"liked")
    if(liked[0]){ 
         liked[0].likes.forEach(element => {
        if(element.userId === user._id){
             likeId = element._id
-       }
-        
-       
-         });
+            }
+        });
     }
     function handleClick(WOID){
         track(WOID)
 
     }
-    async function removeLike(likeId){
+    async function handleUnlike(e){
         const unlike = likeApi.removeLike(likeId)
         handleUnlikeUp()
-    }
-    function handleUnlike(e){
-        removeLike(likeId)
     }
 
     const WO = liked.map((data,i) =>{

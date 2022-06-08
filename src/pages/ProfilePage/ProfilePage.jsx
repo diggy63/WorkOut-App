@@ -46,9 +46,6 @@ export default function ProfilePage({user, handleLogout}){
         findDone();
     },[])
 
-    useEffect(()=>{
-        findLiked()
-    },[reset])
     //console.log(done, "done in profile page")
 
     async function createNewWorkout(WOID){
@@ -58,8 +55,9 @@ export default function ProfilePage({user, handleLogout}){
        navigate(`/workouts/track/${newWO.workout._id}`)
     }
 
-    function handleUnlikeUp(e){
-        setReset(true)
+    async function handleUnlikeUp(e){
+        const WOLiked = await likesAPI.findLikedWorkouts()
+        setLiked(WOLiked.workouts)
     }
 
     return(

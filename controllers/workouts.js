@@ -47,7 +47,7 @@ async function addEx(req,res){
 }
  async function getAll(req,res){
      try {
-         await Workout.find({}).sort('like.length').exec(function(err,workouts){
+         await Workout.find({}).sort({createdAt: 'desc'}).exec(function(err,workouts){
             res.status(200).json({workout:workouts})
          });
          
@@ -119,7 +119,7 @@ async function addEx(req,res){
 
  async function getDone(req,res){
      try {
-        await Workout.find({'userCompleted':req.user}).sort('date').exec(function(err,workouts){
+        await Workout.find({'userCompleted':req.user}).sort({createdAt: 'desc'}).exec(function(err,workouts){
         res.status(200).json({workout:workouts})
         })
     } catch (err) {
