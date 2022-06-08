@@ -11,12 +11,13 @@ import {
   Image,
   GridRow,
   Button,
+  Table
 } from "semantic-ui-react";
 
 import AddToWorkout from "../../components/AddToWorkout/AddToWorkout";
 import WorkoutFrom from "../../components/WorkoutFrom.jsx/WorkoutFrom";
 import "./CreateWorkout.css"
-export default function Workouts({ user, handleLogout, exs, changeSearch }) {
+export default function Workouts({ user, handleLogout, exs, changeSearch, changeExSearch }) {
     const [wrkot, setWrkot] = useState([])
     const [excercise, setExcercise] = useState({})
     const [repSet, setRepSet] = useState({
@@ -83,7 +84,7 @@ export default function Workouts({ user, handleLogout, exs, changeSearch }) {
             <Segment>
             <h2>excercises</h2>
             </Segment>
-            <AddToWorkout exs={exs} changeSearch={changeSearch} handleAdd={handleAdd}/>
+            <AddToWorkout exs={exs} changeSearch={changeSearch} changeExSearch={changeExSearch} handleAdd={handleAdd}/>
             </Grid.Column>
       </Grid.Row>
       <Grid.Row>

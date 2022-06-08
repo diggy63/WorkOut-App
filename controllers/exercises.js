@@ -93,6 +93,41 @@ async function createOrFind(req,res){
     }
 }
 
+async function findSearch(req, res){
+  const sea = exCat[req.params.bodyid];
+  const lowerQ = req.params.qid.toLowerCase();
+  console.log(req.params.qid)
+  const options = {
+    method: "GET",
+    //search by muscle groups and english language
+    url: `https://wger.de/api/v2/exercise/?category=${sea}&language=2&limit=80`,
+    headers: {
+      Authorization: "Token ac8d20dd5cdd6ed1a412fb06269185a7ef2f65e7",
+    },
+  };
+  try {
+    axios
+      .request(options)
+      .then(function (response) {
+        const newData = []
+        //console.log(response.data.results)
+         response.data.results.forEach((item,i) =>{
+           if(item.name.toLowerCase().includes(lowerQ)){
+            newData.push(item)
+           }
+           
+         })
+         console.log(newData)
+        res.status(200).json(newData);
+      })
+      .catch(function (error) {
+        console.error("error");
+      });
+  } catch (err) {
+    return res.status(401).json(err);
+  }
+}
+
 
 
 
@@ -103,4 +138,5 @@ module.exports = {
   find,
   findImg,
   createOrFind,
+  findSearch,
 };

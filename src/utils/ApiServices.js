@@ -25,3 +25,15 @@ export function find(bodyPart) {
       throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
     })
   }
+
+  export function findSearch(q,bodyPart) {
+    return fetch(`${BASE_URL}${q}/queryfor/${bodyPart}`, {
+        headers: {
+        'Authorization': 'Bearer ' + tokenService.getToken()
+      }
+    })
+    .then(res => {
+      if(res.ok) return res.json();
+      throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
+    })
+  }

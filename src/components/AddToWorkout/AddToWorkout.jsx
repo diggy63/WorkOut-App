@@ -8,13 +8,17 @@ import {
   Image,
   Table,
   Loader,
+  Input,
+  Button,
+  Form
 } from "semantic-ui-react";
 import Excercise from "../Excercise/Excercise";
 import { Dropdown } from "semantic-ui-react";
 import "./AddToWorkout.css";
 
-export default function AddToW({ exs, changeSearch, handleAdd }) {
+export default function AddToW({ exs, changeSearch, handleAdd, changeExSearch }) {
   const [search, setSearch] = useState("Chest");
+  const [exSearch, setExSearch] = useState("")
   const workoutOptions = [
     {
       key: "Abs",
@@ -57,6 +61,13 @@ export default function AddToW({ exs, changeSearch, handleAdd }) {
     setSearch(e.target.value);
     changeSearch(e.target.innerText);
   }
+  function handleSearchChange(e){
+    setExSearch(e.target.value)
+  }
+
+  function findEx(e){
+    changeExSearch(exSearch, search)
+  }
 
   //console.log(exs)
   const excers = exs.map((data, i) => {
@@ -88,6 +99,18 @@ export default function AddToW({ exs, changeSearch, handleAdd }) {
         <Segment inverted color="grey">
           <Grid.Row>
             <Grid.Column className="flexcenter" floated="right">
+            <Form autoComplete="off" onSubmit={findEx}>
+                <Input
+                  name="q"
+                  placeholder="search"
+                  value={exSearch}
+                  onChange={handleSearchChange}
+                  // required
+                />
+                <Button type="submit" className="btn">
+                  Search
+                </Button>
+              </Form>
               <Dropdown
                 style={{ maxWidth: 200 }}
                 placeholder="Select Zone"
