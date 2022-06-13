@@ -14,6 +14,11 @@ export default function ExcerciseForm({data, handleRepSetChange}){
       handleReload()
     },[])
 
+    useEffect(() =>{
+      handleRepSetChangeInComp(exstate);
+      console.log("in effect")
+    },[exstate])
+
     async function handleReload(){
       const changeRS = await WorkoutService.changRepSet(exstate)
       console.log(changeRS.workout)
@@ -26,43 +31,30 @@ export default function ExcerciseForm({data, handleRepSetChange}){
         
       })
     }
-    function handleChange(e){
-        setExstate({...exstate,
-        [e.target.name]:e.target.value,
-        })
-    }
-
-    async function handleSubmit(e){
-        e.preventDefault();
+      async function handleRepSetChangeInComp(state){
         const changeRS = await WorkoutService.changRepSet(exstate)
-        //console.log(changeRS, "changerepset")
         handleRepSetChange(changeRS.workout)
-    }
+      }
 
     async function upReps(e){
-      setExstate({...exstate,
-        [e.target.name]:parseInt([(e.target.value)])+1,
+      await setExstate({...exstate,
+        [e.target.name]:exstate[e.target.name]+1,
         })
-        const changeRS = await WorkoutService.changRepSet(exstate)
-        //console.log(changeRS, "changerepset")
-        handleRepSetChange(changeRS.workout)
     }
-
     async function downReps(e){
-      setExstate({...exstate,
-        [e.target.name]:parseInt([(e.target.value)])-1,
+        await setExstate({...exstate,
+        [e.target.name]:exstate[e.target.name]-1,
         })
-        const changeRS = await WorkoutService.changRepSet(exstate)
-        //console.log(changeRS, "changerepset")
-        handleRepSetChange(changeRS.workout)
     }
     return(
         <>
         <Card>
         <Card.Header as="h3"><div className="marginten">{data.name}</div></Card.Header>
-        <Card.Content>Reps:{data.reps} Sets:{data.sets}</Card.Content>
+        <Card.Content>Reps:{exstate.reps} Sets:{exstate.sets}</Card.Content>
         <Card.Content>
         <Button name="reps" value={exstate.reps} onClick={upReps}>+</Button><Button name="reps" value={exstate.reps} onClick={downReps}>-</Button>
+        </Card.Content>
+        <Card.Content>
         <Button name="sets" value={exstate.sets} onClick={upReps}>+</Button><Button name="sets" value={exstate.sets} onClick={downReps}>-</Button>
         </Card.Content>
           </Card>

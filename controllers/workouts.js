@@ -66,7 +66,7 @@ async function addEx(req,res){
         ex.sets = req.body.sets
         console.log(ex)
         workout.save().then(function(){
-            console.log("saveed")
+            console.log("repsets")
             res.status(201).json({workout:workout})
         })
      })
