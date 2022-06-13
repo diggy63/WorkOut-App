@@ -48,7 +48,6 @@ export default function Workouts({ user, handleLogout, exs, changeSearch, change
     async function handleExToWo(){
       const addex = await workoutService.addExcercise(wrkot,excercise,repSet)
       setWrkot(addex.workout);
-      console.log(addex.workout, "returned value")
     }
 
     useEffect(() =>{

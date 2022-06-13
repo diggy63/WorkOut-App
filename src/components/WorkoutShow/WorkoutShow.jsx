@@ -45,7 +45,6 @@ export default function WorkoutShow({ workout, addLike, user, removeLike }) {
     likeslength = workout.likes;
   }
   function handleDelete(e) {
-    console.log("click");
     WorkoutService.deleteOne(workout._id);
     navigate("/");
   }

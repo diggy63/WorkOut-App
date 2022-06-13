@@ -8,9 +8,8 @@ export default function Liked({liked, track, user, handleUnlikeUp}){
     const [workouts, setWorkout] = useState([])
     useEffect(() =>{
         setWorkout(liked)
-    },[])
+    },[liked])
     let likeId
-   //console.log(liked,"liked")
    if(liked[0]){ 
         liked[0].likes.forEach(element => {
        if(element.userId === user._id){
@@ -23,7 +22,7 @@ export default function Liked({liked, track, user, handleUnlikeUp}){
 
     }
     async function handleUnlike(e){
-        const unlike = likeApi.removeLike(likeId)
+        const unlike =  await likeApi.removeLike(likeId);
         handleUnlikeUp()
     }
 

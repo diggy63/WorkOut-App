@@ -56,8 +56,7 @@ export default function ProfilePage({user, handleLogout}){
     }
 
     async function handleUnlikeUp(e){
-        const WOLiked = await likesAPI.findLikedWorkouts()
-        setLiked(WOLiked.workouts)
+        findLiked();
     }
 
     return(
