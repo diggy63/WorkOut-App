@@ -75,8 +75,8 @@ function App() {
     const finding = await ApiService.find(search);
     //const imgFind = await ApiService.findImg();
     //console.log(finding, "finding");
-    setExs(finding.results);
-    // console.log(imgFind, "img");
+    setExs(finding);
+    console.log(finding, "finding");
     // setImg(imgFind);
   }
 

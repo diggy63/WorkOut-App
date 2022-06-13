@@ -12,6 +12,25 @@ const exCat = {
   Shoulders: 13,
 };
 
+async function getOrCreateDB(results, bp){
+  //console.log(bp)
+  
+  const ex = await Excersice.findOne({name:results.name})
+  if(!ex){
+    const newEx = await Excersice.create(results)
+    newEx.bodyPart= bp
+    newEx.save();
+    //console.log(newEx);
+  }else{
+    console.log("found")
+  }
+
+}
+
+async function findExsInDB(bp, res){
+  const allExcers = await Excersice.find({bodyPart:bp})
+  res.status(200).json(allExcers)
+}
 
 async function find(req, res) {
   const sea = exCat[req.params.id];
@@ -27,7 +46,11 @@ async function find(req, res) {
     axios
       .request(options)
       .then(function (response) {
-        res.status(200).json(response.data);
+        response.data.results.forEach(item => {
+          getOrCreateDB(item, req.params.id)
+        })
+        findExsInDB(req.params.id, res)
+        // res.status(200).json(response.data);
       })
       .catch(function (error) {
         console.error("error");
@@ -35,6 +58,7 @@ async function find(req, res) {
   } catch (err) {
     return res.status(401).json(err);
   }
+
 }
 //an image function that is not in use yet
 async function findImg(req, res) {

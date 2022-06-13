@@ -4,12 +4,6 @@ import { Card, Table, Dimmer, Loader, Image, Segment } from "semantic-ui-react";
 export default function Feed({ exs }) {
   const [loading, setLoading] = useState(true);
 
-  //console.log(exs);
-  if (exs.length === 0) {
-    //console.log("not Working");
-  } else {
-    //console.log("working");
-  }
 
   const excers = exs.map((data, i) => {
     return <Excercise key={i} data={data} isADD={false} />;

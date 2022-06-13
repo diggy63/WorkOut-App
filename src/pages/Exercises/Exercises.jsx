@@ -52,32 +52,22 @@ export default function Excersices({ user, handleLogout }) {
 
   useEffect(() => {
     makeApiCall();
-    //makeApiCallImg();
   }, []);
 
     useEffect(() =>{
     makeApiCall();
     },[search])
 
+    //finds the excercises by the search parameter
   async function makeApiCall() {
     const finding = await ApiService.find(search);
-    //const imgFind = await ApiService.findImg();
-    //console.log(finding, "finding");
-    setExs(finding.results);
-    // console.log(imgFind, "img");
-    // setImg(imgFind);
+    setExs(finding);
+    console.log(finding)
   }
-//   async function makeApiCallImg() {
-//     const imgFind = await ApiService.findImg();
-    // console.log(imgFind, "img");
-    // setImg(imgFind);
-//   }
  
   function handleChange(e){
         SetSearch(e.target.innerText)
   }
-
-  //this is for /muscles api call
 
   return (
     <Grid centered>

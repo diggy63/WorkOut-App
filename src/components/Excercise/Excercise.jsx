@@ -20,8 +20,9 @@ export default function Excercise({data, handleAdd, isAdd}){
     };
     const onlyText = removeHTML(data.description); 
     data.description = onlyText
+
+
     function handleClick(e){
-        console.log("click")
         handleAdd(data, exstate);
     }
 
