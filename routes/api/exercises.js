@@ -7,6 +7,7 @@ router.post('/', exCtrl.createOrFind)
 router.get('/img', exCtrl.findImg);
 router.get('/:qid/queryfor/:bodyid', exCtrl.findSearch)
 router.get('/:id', exCtrl.find);
+router.post('/create', exCtrl.createNew)
 
 
 

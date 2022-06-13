@@ -14,6 +14,7 @@ import WorkoutDetails from "../WorkoutDetails/WorkoutDetails"
 import Profile from "../ProfilePage/ProfilePage"
 import TrackWorkout from "../TrackWorkout/TrackWorkout";
 import DoneDetails from "../DoneDetails/Donedetails";
+import AddEx from "../AddEx/AddEx"
 
 
 function App() {
@@ -118,6 +119,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Workouts user={user} handleLogout={handleLogout} />} />
         <Route path="/exercises" element={<Excersices user={user} handleLogout={handleLogout} />} />
+        <Route path="/exercises/new" element={<AddEx user={user} handleLogout={handleLogout} />} />
         <Route path="/workouts" element={<Workouts user={user} handleLogout={handleLogout} />} />
         <Route path="/workouts/new" element={<MakeWorkoutInDB user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
         <Route path="/workouts/create/:id" element={<CreateWorkout user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} changeExSearch={changeExSearch} />} />

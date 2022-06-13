@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import * as ApiService from "../../utils/ApiServices";
-import { Grid, Card, Dimmer, Segment, Image, GridRow } from "semantic-ui-react";
+import { Grid, Card, Dimmer, Segment, Image, GridRow, Button } from "semantic-ui-react";
 import ExcerciseFeed from "../../components/ExcerciseFeed/ExcerciseFeed";
 import { Dropdown } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 export default function Excersices({ user, handleLogout }) {
   const [exs, setExs] = useState([]);
@@ -84,9 +85,9 @@ export default function Excersices({ user, handleLogout }) {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column textAlign="center" style={{ maxWidth: 1200 }}>
+        <Grid.Column width={4} textAlign="center">
           <Dropdown
-            style={{ maxWidth: 200 }}
+            style={{ maxWidth: 400 }}
             placeholder="Select Zone"
             value={search}
             fluid
@@ -94,6 +95,11 @@ export default function Excersices({ user, handleLogout }) {
             options={workoutOptions}
             onChange={handleChange}
           />
+        </Grid.Column>
+        <Grid.Column width={4}>
+        <Link to="/exercises/new">
+          <Button>Add New Excersice</Button>
+          </Link>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>

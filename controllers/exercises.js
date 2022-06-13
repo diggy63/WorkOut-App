@@ -152,6 +152,21 @@ async function findSearch(req, res){
   }
 }
 
+async function createNew(req,res){
+  try {
+    const newEx = await Excersice.find({name:req.body.name})
+    console.log(newEx.length)
+    if(newEx.length === 0){
+      const newwwer = await Excersice.create(req.body)
+      newwwer.save()
+      console.log("new")
+      res.status(200).json(newwwer);
+    }
+    res.status(200).json(newEx);
+  } catch (error) {
+    
+  }
+}
 
 
 
@@ -163,4 +178,5 @@ module.exports = {
   findImg,
   createOrFind,
   findSearch,
+  createNew,
 };
