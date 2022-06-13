@@ -9,6 +9,23 @@ export default function ExcerciseForm({data, handleRepSetChange}){
         sets: 0,
         id: data._id,
     })
+
+    useEffect(() =>{
+      handleReload()
+    },[])
+
+    async function handleReload(){
+      const changeRS = await WorkoutService.changRepSet(exstate)
+      console.log(changeRS.workout)
+      changeRS.workout.excercises.forEach(item =>{
+        if(item._id === exstate.id)
+        console.log(item.reps)
+        setExstate({...exstate,
+            reps:item.reps,
+          sets:item.sets,})
+        
+      })
+    }
     function handleChange(e){
         setExstate({...exstate,
         [e.target.name]:e.target.value,
@@ -21,44 +38,33 @@ export default function ExcerciseForm({data, handleRepSetChange}){
         //console.log(changeRS, "changerepset")
         handleRepSetChange(changeRS.workout)
     }
+
+    async function upReps(e){
+      setExstate({...exstate,
+        [e.target.name]:parseInt([(e.target.value)])+1,
+        })
+        const changeRS = await WorkoutService.changRepSet(exstate)
+        //console.log(changeRS, "changerepset")
+        handleRepSetChange(changeRS.workout)
+    }
+
+    async function downReps(e){
+      setExstate({...exstate,
+        [e.target.name]:parseInt([(e.target.value)])-1,
+        })
+        const changeRS = await WorkoutService.changRepSet(exstate)
+        //console.log(changeRS, "changerepset")
+        handleRepSetChange(changeRS.workout)
+    }
     return(
         <>
         <Card>
         <Card.Header as="h3"><div className="marginten">{data.name}</div></Card.Header>
         <Card.Content>Reps:{data.reps} Sets:{data.sets}</Card.Content>
-        <Form autoComplete="off" onSubmit={handleSubmit}>
-              <div className="flexy">
-                Reps:
-            <Form.Input
-
-            type="number"
-              name="reps"
-              min="1" 
-              max="30"
-              placeholder="reps"
-              value={exstate.reps}
-              onChange={handleChange}
-              required
-            />
-            Sets:
-            <Form.Input
-              type="number"
-              name="sets"
-              min="1" 
-              max="30"
-              placeholder="sets"
-              value={exstate.sets}
-              onChange={handleChange}
-              required
-            />
-            </div>
-            <div className="btn">
-            <Button type="submit" className="btn">
-              Set
-            </Button>
-            </div>
-          
-          </Form>
+        <Card.Content>
+        <Button name="reps" value={exstate.reps} onClick={upReps}>+</Button><Button name="reps" value={exstate.reps} onClick={downReps}>-</Button>
+        <Button name="sets" value={exstate.sets} onClick={upReps}>+</Button><Button name="sets" value={exstate.sets} onClick={downReps}>-</Button>
+        </Card.Content>
           </Card>
         </>
     )

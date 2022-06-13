@@ -158,6 +158,8 @@ async function createNew(req,res){
     console.log(newEx.length)
     if(newEx.length === 0){
       const newwwer = await Excersice.create(req.body)
+      newwwer.userMade = req.user
+      console.log(newwwer.userMade)
       newwwer.save()
       console.log("new")
       res.status(200).json(newwwer);
