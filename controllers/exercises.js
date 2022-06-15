@@ -14,17 +14,21 @@ const exCat = {
 
 async function getOrCreateDB(results, bp){
   //console.log(bp)
+  try {
+    
   
   const ex = await Excersice.findOne({name:results.name})
   if(!ex){
     const newEx = await Excersice.create(results)
     newEx.bodyPart= bp
     newEx.save();
-    //console.log(newEx);
+    console.log("made")
   }else{
     console.log("found")
   }
-
+} catch (error) {
+    console.log("error in making")
+}
 }
 
 async function findExsInDB(bp, res){
@@ -50,7 +54,6 @@ async function find(req, res) {
           getOrCreateDB(item, req.params.id)
         })
         findExsInDB(req.params.id, res)
-        // res.status(200).json(response.data);
       })
       .catch(function (error) {
         console.error("error");

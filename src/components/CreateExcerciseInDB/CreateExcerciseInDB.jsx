@@ -4,6 +4,7 @@ import { Button, Form, Grid, Header, Image, Segment, TextArea, Dropdown } from '
 import * as excerciseService from "../../utils/excerciseServices"
 
 export default function WorkoutDBCreate(){
+  
   const workoutOptions = [
     {
       key: "Abs",
@@ -52,6 +53,8 @@ export default function WorkoutDBCreate(){
         e.preventDefault();
       const newExx = await excerciseService.createEx(ex)
       console.log(newExx)
+      navigate("/exercises")
+
       
        
     }
