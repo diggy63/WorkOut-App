@@ -4,10 +4,8 @@ const Excercise = require("../models/Excercise")
 
 
 async function create(req, res){
-    console.log(req.body,"create")
     try {
         const newWorkout = await Workout.create(req.body)
-        console.log(newWorkout)
         res.status(201).json({workout:newWorkout})
     } catch (err) {
         console.log("error creating workout");
@@ -59,14 +57,11 @@ async function addEx(req,res){
 
  //changes rep and sets in a workout you are creating
  async function changeRepSet(req,res){
-     console.log(req.body)
      const exChange = await Workout.findOne({'excercises._id':req.body.id}).then(function(workout){
         const ex = workout.excercises.id(req.body.id);
         ex.reps = req.body.reps
         ex.sets = req.body.sets
-        console.log(ex)
         workout.save().then(function(){
-            console.log("repsets")
             res.status(201).json({workout:workout})
         })
      })
@@ -160,7 +155,6 @@ async function deleteOne(req,res){
 
 
 async function search(req,res){
-    console.log(req.params.id)
     try {
         //searchs for text that matchs the qeuery
         const WO = await Workout.find({$text: {$search: req.params.id}})

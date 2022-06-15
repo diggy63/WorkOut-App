@@ -25,24 +25,17 @@ export default function Workouts({ user, handleLogout, exs, changeSearch, change
       sets: 0
     })
     const workoutID = useParams();
-    //console.log(workoutID, 'workoutId')
 
     async function findWO(WO){
         const workOut = await workoutService.find(WO);
-        //console.log(workOut)
         setWrkot(workOut.workout);
-        //console.log(wrkot, "check excercises")
     }
 
      async function handleAdd(data, repset){
-        //console.log(data, "in handleAdd")
-        //console.log("clickup")
-        const excercis = await excerciseService.createOrFind(data)
-        //console.log(excercise.workout, "changed")
-        //console.log(excercise.workout, 'in the creatworkout component')
+      console.log(data, "data in handle add")
+        const excercis = await excerciseService.findToAdd(data)
         setRepSet({reps:parseInt(repset.reps), sets:parseInt(repset.sets)})
         setExcercise(excercis.workout, repset);
-        //console.log(repSet, '<-------workout in hand Add')
     }
 
     async function handleExToWo(){

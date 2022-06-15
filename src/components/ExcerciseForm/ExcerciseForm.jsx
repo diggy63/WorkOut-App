@@ -16,7 +16,6 @@ export default function ExcerciseForm({data, handleRepSetChange}){
 
     useEffect(() =>{
       handleRepSetChangeInComp(exstate);
-      console.log("in effect")
     },[exstate])
 
     async function handleReload(){

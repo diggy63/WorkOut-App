@@ -1,5 +1,5 @@
 const Excersice = require("../models/Excercise");
-const findOrCreate = require('mongoose-find-or-create')
+const findOrCreate = require("mongoose-find-or-create");
 
 const axios = require("axios");
 const exCat = {
@@ -12,28 +12,24 @@ const exCat = {
   Shoulders: 13,
 };
 
-async function getOrCreateDB(results, bp){
+async function getOrCreateDB(results, bp) {
   //console.log(bp)
   try {
-    
-  
-  const ex = await Excersice.findOne({name:results.name})
-  if(!ex){
-    const newEx = await Excersice.create(results)
-    newEx.bodyPart= bp
-    newEx.save();
-    console.log("made")
-  }else{
-    console.log("found")
+    const ex = await Excersice.findOne({ name: results.name });
+    if (!ex) {
+      const newEx = await Excersice.create(results);
+      newEx.bodyPart = bp;
+      newEx.save();
+    } else {
+    }
+  } catch (error) {
+    console.log("error in making");
   }
-} catch (error) {
-    console.log("error in making")
-}
 }
 
-async function findExsInDB(bp, res){
-  const allExcers = await Excersice.find({bodyPart:bp})
-  res.status(200).json(allExcers)
+async function findExsInDB(bp, res) {
+  const allExcers = await Excersice.find({ bodyPart: bp });
+  res.status(200).json(allExcers);
 }
 
 async function find(req, res) {
@@ -50,18 +46,18 @@ async function find(req, res) {
     axios
       .request(options)
       .then(function (response) {
-        response.data.results.forEach(item => {
-          getOrCreateDB(item, req.params.id)
+        response.data.results.forEach((item) => {
+          getOrCreateDB(item, req.params.id);
         })
-        findExsInDB(req.params.id, res)
+          findExsInDB(req.params.id, res);
       })
       .catch(function (error) {
-        console.error("error");
+        console.error("error in find");
       });
   } catch (err) {
+    console.log("could not reach DB")
     return res.status(401).json(err);
   }
-
 }
 //an image function that is not in use yet
 async function findImg(req, res) {
@@ -87,43 +83,38 @@ async function findImg(req, res) {
   }
 }
 
-//create or find function 
-async function createOrFind(req,res){
-  //console.log()
-    let newbodyPart = '';
-    //console.log(req.body.name, ",<---------req.body")
-    Object.keys(exCat).forEach(e =>{
-        if(req.body.category === exCat[e]){ 
-        newbodyPart = e;
-        }
-    })
-    try {
-        const ex = await Excersice.findOne({name:req.body.name})
-        //console.log("already created")
-        //if the search comes with new null its crates the excercise in the model
-        //its basically a get or create function
-        if(!ex){
-            const newEx = await Excersice.create(req.body)
-            newEx.bodyPart= newbodyPart
-            newEx.save();
-            //console.log("new creation")
-            res.status(201).json({workout:newEx})
-            //console.log("res gone")
-        }else{
-            res.status(200).json({workout:ex})
-        }
-        
-    } catch (err) {
-        console.log("couldnt find or create one")
-        return res.status(401).json(err);
-        
-    }
+//create or find function
+async function findToAdd(req, res) {
+  console.log(req.body.name, "<-------------------------------body")
+  // let newbodyPart = "";
+  // //console.log(req.body.name, ",<---------req.body")
+  // Object.keys(exCat).forEach((e) => {
+  //   if (req.body.category === exCat[e]) {
+  //     newbodyPart = e;
+  //   }
+  // });
+  try {
+    const ex = await Excersice.findOne({ name: req.body.name });
+    //if the search comes with new null its crates the excercise in the model
+    //its basically a get or create function
+    // if (!ex) {
+    //   const newEx = await Excersice.create(req.body);
+    //   newEx.bodyPart = newbodyPart;
+    //   newEx.save();
+    //   res.status(201).json({ workout: newEx });
+
+    // } else {
+      res.status(200).json({ workout: ex });
+    // }
+  } catch (err) {
+    console.log("couldnt find or create one");
+    return res.status(401).json(err);
+  }
 }
 
-async function findSearch(req, res){
+async function findSearch(req, res) {
   const sea = exCat[req.params.bodyid];
   const lowerQ = req.params.qid.toLowerCase();
-  console.log(req.params.qid)
   const options = {
     method: "GET",
     //search by muscle groups and english language
@@ -136,15 +127,13 @@ async function findSearch(req, res){
     axios
       .request(options)
       .then(function (response) {
-        const newData = []
+        const newData = [];
         //console.log(response.data.results)
-         response.data.results.forEach((item,i) =>{
-           if(item.name.toLowerCase().includes(lowerQ)){
-            newData.push(item)
-           }
-           
-         })
-         console.log(newData)
+        response.data.results.forEach((item, i) => {
+          if (item.name.toLowerCase().includes(lowerQ)) {
+            newData.push(item);
+          }
+        });
         res.status(200).json(newData);
       })
       .catch(function (error) {
@@ -155,33 +144,23 @@ async function findSearch(req, res){
   }
 }
 
-async function createNew(req,res){
+async function createNew(req, res) {
   try {
-    const newEx = await Excersice.find({name:req.body.name})
-    console.log(newEx.length)
-    if(newEx.length === 0){
-      const newwwer = await Excersice.create(req.body)
-      newwwer.userMade = req.user
-      console.log(newwwer.userMade)
-      newwwer.save()
-      console.log("new")
+    const newEx = await Excersice.find({ name: req.body.name });
+    if (newEx.length === 0) {
+      const newwwer = await Excersice.create(req.body);
+      newwwer.userMade = req.user;
+      newwwer.save();
       res.status(200).json(newwwer);
     }
     res.status(200).json(newEx);
-  } catch (error) {
-    
-  }
+  } catch (error) {}
 }
-
-
-
-
-
 
 module.exports = {
   find,
   findImg,
-  createOrFind,
+  findToAdd,
   findSearch,
   createNew,
 };
