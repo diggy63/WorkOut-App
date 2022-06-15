@@ -8,12 +8,14 @@ export default function Head({user, handleLogout}) {
   return (
     <Segment className="background" inverted color="grey" clearing>
     <div className="bg">
-      <Header as="h2" floated="right">
+      <Header as="h2" className="marginTop" floated="right">
+        
+        <Link  className="navBarLink" to={`/${user?.username}`}>Home</Link>
+        <Link  className="navBarLink" to="/exercises">Excersices</Link>
+        <Link  className="navBarLink" to="/workouts">Workouts</Link>
         <Link className="navBarLink" to="" onClick={handleLogout}>
           Logout
         </Link>
-        <Link  className="navBarLink" to="/exercises">Excersices</Link>
-        <Link  className="navBarLink" to="/workouts">Workouts</Link>
       </Header>
       <Header as="h2" floated="left">
         <Link to={`/${user?.username}`}>

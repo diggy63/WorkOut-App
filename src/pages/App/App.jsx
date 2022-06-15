@@ -87,9 +87,19 @@ function App() {
 
   async function changeExSearch(q,bodypart){
     const newExSearch = await ApiService.findSearch(q,bodypart)
-    console.log(newExSearch)
+    console.log(newExSearch , "here")
+    
+    if(newExSearch.length === 0){
+      setExs(["Nothing"])
+      console.log("not Found")
+    }else{
+      setExs(newExSearch)
+    }
   }
 
+  async function getAll(e){
+    makeApiCall();
+  }
 
 
 
@@ -122,7 +132,7 @@ function App() {
         <Route path="/exercises/new" element={<AddEx user={user} handleLogout={handleLogout} />} />
         <Route path="/workouts" element={<Workouts user={user} handleLogout={handleLogout} />} />
         <Route path="/workouts/new" element={<MakeWorkoutInDB user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
-        <Route path="/workouts/create/:id" element={<CreateWorkout user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} changeExSearch={changeExSearch} />} />
+        <Route path="/workouts/create/:id" element={<CreateWorkout user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} changeExSearch={changeExSearch} getAll={getAll} />} />
         <Route path="/workouts/:id" element={<WorkoutDetails user={user} handleLogout={handleLogout} exs={exs} changeSearch={changeSearch} />} />
         <Route path="/:id" element={<Profile user={user} handleLogout={handleLogout} />} />
         <Route path="/workouts/track/:id" element={<TrackWorkout user={user} handleLogout={handleLogout} />} />

@@ -17,7 +17,7 @@ import {
 import AddToWorkout from "../../components/AddToWorkout/AddToWorkout";
 import WorkoutFrom from "../../components/WorkoutFrom.jsx/WorkoutFrom";
 import "./CreateWorkout.css"
-export default function Workouts({ user, handleLogout, exs, changeSearch, changeExSearch }) {
+export default function Workouts({ user, handleLogout, exs, changeSearch, changeExSearch, getAll }) {
     const [wrkot, setWrkot] = useState([])
     const [excercise, setExcercise] = useState({})
     const [repSet, setRepSet] = useState({
@@ -66,7 +66,7 @@ export default function Workouts({ user, handleLogout, exs, changeSearch, change
       <Grid.Row>
         <Grid.Column className="marginten widebody" textAlign="center" style={{ maxWidth: 400 }}>
             <Segment>
-          <h2>workout</h2>
+          <h2>Workout</h2>
           </Segment >
             <div className="fixed">
               <WorkoutFrom workout={wrkot} />
@@ -74,9 +74,9 @@ export default function Workouts({ user, handleLogout, exs, changeSearch, change
               </Grid.Column>
               <Grid.Column className="marginten widebody" textAlign="center" style={{ maxWidth: 1000 }}>
             <Segment>
-            <h2>excercises</h2>
+            <h2>Excercises</h2>
             </Segment>
-            <AddToWorkout exs={exs} changeSearch={changeSearch} changeExSearch={changeExSearch} handleAdd={handleAdd}/>
+            <AddToWorkout exs={exs} changeSearch={changeSearch} changeExSearch={changeExSearch} handleAdd={handleAdd} getItAll={getAll}/>
             </Grid.Column>
       </Grid.Row>
       <Grid.Row>
