@@ -85,27 +85,10 @@ async function findImg(req, res) {
 
 //create or find function
 async function findToAdd(req, res) {
-  console.log(req.body.name, "<-------------------------------body")
-  // let newbodyPart = "";
-  // //console.log(req.body.name, ",<---------req.body")
-  // Object.keys(exCat).forEach((e) => {
-  //   if (req.body.category === exCat[e]) {
-  //     newbodyPart = e;
-  //   }
-  // });
+  //console.log(req.body.name, "<-------------------------------body")
   try {
     const ex = await Excersice.findOne({ name: req.body.name });
-    //if the search comes with new null its crates the excercise in the model
-    //its basically a get or create function
-    // if (!ex) {
-    //   const newEx = await Excersice.create(req.body);
-    //   newEx.bodyPart = newbodyPart;
-    //   newEx.save();
-    //   res.status(201).json({ workout: newEx });
-
-    // } else {
       res.status(200).json({ workout: ex });
-    // }
   } catch (err) {
     console.log("couldnt find or create one");
     return res.status(401).json(err);
@@ -113,35 +96,17 @@ async function findToAdd(req, res) {
 }
 
 async function findSearch(req, res) {
-  const sea = exCat[req.params.bodyid];
+  console.log(req.params)
   const lowerQ = req.params.qid.toLowerCase();
-  const options = {
-    method: "GET",
-    //search by muscle groups and english language
-    url: `https://wger.de/api/v2/exercise/?category=${sea}&language=2&limit=80`,
-    headers: {
-      Authorization: "Token ac8d20dd5cdd6ed1a412fb06269185a7ef2f65e7",
-    },
-  };
-  try {
-    axios
-      .request(options)
-      .then(function (response) {
-        const newData = [];
-        //console.log(response.data.results)
-        response.data.results.forEach((item, i) => {
-          if (item.name.toLowerCase().includes(lowerQ)) {
-            newData.push(item);
-          }
-        });
-        res.status(200).json(newData);
-      })
-      .catch(function (error) {
-        console.error("error");
-      });
-  } catch (err) {
-    return res.status(401).json(err);
-  }
+  const qExcercies = await Excersice.find({})
+  const foundResult = []
+  await qExcercies.forEach(item =>{
+    if (item.name.toLowerCase().includes(lowerQ)) {
+      foundResult.push(item)
+    }
+  })
+  res.status(200).json(foundResult);
+  console.log(foundResult)
 }
 
 async function createNew(req, res) {

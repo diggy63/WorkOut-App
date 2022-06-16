@@ -10,6 +10,9 @@ export default function ExcerciseTracking({ data, changeWeight }) {
     })
 
     useEffect(() =>{
+      if(exstate.weight<0){
+        exstate.weight=0;
+      }
       changeWeight(exstate);
     },[exstate])
 
@@ -47,12 +50,13 @@ export default function ExcerciseTracking({ data, changeWeight }) {
     <Table.Cell> 
         <div className="flex">
         <div>
-        Weight:{data.weight} <Button value={exstate.weight} onClick={resetWeight}>reset</Button>
+        Weight:{data.weight} 
         </div>
         <div className="btnRow">
         <Button value={exstate.weight} onClick={addWeight}>+45</Button>
         <Button value={exstate.weight} onClick={addWeight}>+10</Button>
         <Button value={exstate.weight} onClick={addWeight}>+5</Button>
+        <Button value={exstate.weight} onClick={resetWeight}>reset</Button>
         <Button value={exstate.weight} onClick={loseWeight}>-5</Button>
         <Button value={exstate.weight} onClick={loseWeight}>-10</Button>
         <Button value={exstate.weight} onClick={loseWeight}>-45</Button>

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Card, Form, Button, Segment} from "semantic-ui-react";
+import {Card, Form, Button, Segment, Grid} from "semantic-ui-react";
 import * as WorkoutService from "../../utils/workoutServices";
 import "./ExcerciseFrom.css"
 
@@ -47,8 +47,29 @@ export default function ExcerciseForm({data, handleRepSetChange}){
     }
     return(
         <>
-        <Card>
-        <Card.Header as="h3"><div className="marginten">{data.name}</div></Card.Header>
+        <Grid>
+          <Grid.Row columns={1}>
+            <Grid.Column>
+            <h3>{data.name}</h3>
+            </Grid.Column>
+            <Grid.Column>
+            <Card.Content>Reps:{exstate.reps} Sets:{exstate.sets}</Card.Content>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row columns={2}>
+          <Grid.Column>
+          <Button size="mini" name="reps" value={exstate.reps} onClick={upReps}>+</Button><Button size="mini" name="reps" value={exstate.reps} onClick={downReps}>-</Button>
+          <div>Set Reps</div>
+              </Grid.Column>
+              <Grid.Column>
+              <Button size="mini" name="sets" value={exstate.sets} onClick={upReps}>+</Button><Button size="mini" name="sets" value={exstate.sets} onClick={downReps}>-</Button>
+              <div>Set Sets</div>
+            </Grid.Column>
+            
+          </Grid.Row>
+        </Grid>
+        <hr></hr>
+        {/* <Card.Header as="h3"><div className="marginten">{data.name}</div></Card.Header>
         <Card.Content>Reps:{exstate.reps} Sets:{exstate.sets}</Card.Content>
         <Card.Content>
         <Button name="reps" value={exstate.reps} onClick={upReps}>+</Button><Button name="reps" value={exstate.reps} onClick={downReps}>-</Button>
@@ -56,7 +77,7 @@ export default function ExcerciseForm({data, handleRepSetChange}){
         <Card.Content>
         <Button name="sets" value={exstate.sets} onClick={upReps}>+</Button><Button name="sets" value={exstate.sets} onClick={downReps}>-</Button>
         </Card.Content>
-          </Card>
+          </Card> */}
         </>
     )
 }
