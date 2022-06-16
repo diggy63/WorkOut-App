@@ -8,6 +8,11 @@ export default function ExcerciseTracking({ data, changeWeight }) {
         weight: 0,
         id: data._id,
     })
+
+    useEffect(() =>{
+      changeWeight(exstate);
+    },[exstate])
+
   function handleChange(e) {
     setExstate({ ...exstate, [e.target.name]: e.target.value });
   }
@@ -18,6 +23,22 @@ export default function ExcerciseTracking({ data, changeWeight }) {
        changeWeight(exstate);
   }
 
+  async function addWeight(e){
+    setExstate({...exstate,
+      weight:parseInt(e.target.value) + parseInt(e.target.innerText),
+    })
+  }
+  async function loseWeight(e){
+    console.log(parseInt(e.target.innerText))
+    setExstate({...exstate,
+      weight:parseInt(e.target.value) + parseInt(e.target.innerText),
+    })
+  }
+  async function resetWeight(){
+    setExstate({...exstate,
+      weight:0,
+    })
+  }
   return (
       <>
     <Table.Row>
@@ -25,25 +46,17 @@ export default function ExcerciseTracking({ data, changeWeight }) {
     <Table.Cell>Reps:{data.reps} Sets:{data.sets} </Table.Cell>
     <Table.Cell> 
         <div className="flex">
-        Weight:{data.weight}
-        <Form autoComplete="off" onSubmit={handleSubmit}>
-            <Form.Input
-                style={{ maxWidth: 200 }}
-              type="number"
-              name="weight"
-              min="1"
-              max="1000"
-              placeholder="Set Weight"
-              value={exstate.weight}
-              onChange={handleChange}
-              required
-            />
-            <div>
-            <Button type="submit" className="btn">
-              Set
-            </Button>
-            </div>
-        </Form>
+        <div>
+        Weight:{data.weight} <Button value={exstate.weight} onClick={resetWeight}>reset</Button>
+        </div>
+        <div className="btnRow">
+        <Button value={exstate.weight} onClick={addWeight}>+45</Button>
+        <Button value={exstate.weight} onClick={addWeight}>+10</Button>
+        <Button value={exstate.weight} onClick={addWeight}>+5</Button>
+        <Button value={exstate.weight} onClick={loseWeight}>-5</Button>
+        <Button value={exstate.weight} onClick={loseWeight}>-10</Button>
+        <Button value={exstate.weight} onClick={loseWeight}>-45</Button>
+        </div>
         </div>
         </Table.Cell>
   </Table.Row>
