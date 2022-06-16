@@ -6,11 +6,8 @@ import "./DoneWorkouts.css"
 export default function Done({done}){
     const navigate = useNavigate()
 
-    //console.log(done, "in Done")
-    //setExs(done)
     function handleClick(workoutid){
         navigate(`/workouts/donedetails/${workoutid}`)
-        console.log("click")
     }
 
 

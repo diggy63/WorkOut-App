@@ -39,7 +39,6 @@ export default function WorkoutFrom({workout}){
     })
 
     function handleClick(e){
-      console.log("click")
       navigate(`/workouts/${workout._id}`)
     }
 

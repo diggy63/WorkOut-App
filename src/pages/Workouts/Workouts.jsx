@@ -38,7 +38,6 @@ export default function Workouts({ user, handleLogout }) {
   // },)
   async function findWO(e) {
     const searchWO = await WorkoutServices.search(search);
-    console.log(searchWO.WorkO);
     setWOS(searchWO.WorkO);
   }
 

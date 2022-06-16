@@ -13,6 +13,7 @@ import Header from "../../components/Header/Header"
 import { useParams } from "react-router-dom";
 import * as Workoutservice from "../../utils/workoutServices"
 import WorkoutDoneDetail from "../../components/WorkoutDoneFull/WorkoutDoneFull"
+import GraphData from "../../components/GraphData/GraphData"
 
 export default function DoneDetails({user, handleLogout}){
     const [dWO, setDWO] = useState([]);
@@ -24,14 +25,13 @@ export default function DoneDetails({user, handleLogout}){
     //console.log(para)
     async function findWO(){
         const WO = await Workoutservice.find(para)
-        //console.log(WO, "workout")
         setDWO(WO.workout)
         
         
     }
     async function findAllWO(){
         const allWO = await Workoutservice.findAllOfOne(para)
-        //console.log(allWO, "allWorkouts")
+        console.log(allWO)
         setAllWorkoutsDone(allWO.workout)
         findStats(allWO)
         
@@ -94,6 +94,13 @@ export default function DoneDetails({user, handleLogout}){
             <h4>Workouts Done:{allWorkoutsD.length}</h4>
             {bestStats}
             </Segment>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+          <Segment>
+            <GraphData allWOD={allWorkoutsD} />
+          </Segment>
         </Grid.Column>
       </Grid.Row>
     </Grid>

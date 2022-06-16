@@ -74,11 +74,7 @@ function App() {
 
   async function makeApiCall() {
     const finding = await ApiService.find(search);
-    //const imgFind = await ApiService.findImg();
-    //console.log(finding, "finding");
     setExs(finding);
-    console.log(finding, "finding");
-    // setImg(imgFind);
   }
 
   async function changeSearch(data){
@@ -91,7 +87,6 @@ function App() {
     
     if(newExSearch.length === 0){
       setExs(["Nothing"])
-      console.log("not Found")
     }else{
       setExs(newExSearch)
     }

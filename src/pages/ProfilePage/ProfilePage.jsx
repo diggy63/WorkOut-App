@@ -50,8 +50,6 @@ export default function ProfilePage({user, handleLogout}){
 
     async function createNewWorkout(WOID){
         const newWO = await WorkoutService.makeNewTrack(WOID)
-        console.log(newWO.workout._id)
-        //console.log(WOID, "profile")
        navigate(`/workouts/track/${newWO.workout._id}`)
     }
 

@@ -63,7 +63,6 @@ export default function Excersices({ user, handleLogout }) {
   async function makeApiCall() {
     const finding = await ApiService.find(search);
     setExs(finding);
-    console.log(finding)
   }
  
   function handleChange(e){

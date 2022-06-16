@@ -49,10 +49,8 @@ export default function WorkoutDBCreate(){
         bodyPart: 'Chest',
     })
     async function handleSubmit(e){
-      console.log("click")
-        e.preventDefault();
+      e.preventDefault();
       const newExx = await excerciseService.createEx(ex)
-      console.log(newExx)
       navigate("/exercises")
 
       
@@ -60,13 +58,11 @@ export default function WorkoutDBCreate(){
     }
 
     function handleChange(e){
-      console.log(e.target.name)
         setEx({...ex,
         [e.target.name]:e.target.value})
     }
 
     function handleDropdownChange(e){
-      console.log(e.target.innerText)
       setEx({...ex,
       bodyPart:e.target.innerText})
     }

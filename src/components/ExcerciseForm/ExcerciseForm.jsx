@@ -22,11 +22,12 @@ export default function ExcerciseForm({data, handleRepSetChange}){
       const changeRS = await WorkoutService.changRepSet(exstate)
       console.log(changeRS.workout)
       changeRS.workout.excercises.forEach(item =>{
-        if(item._id === exstate.id)
+        if(item._id === exstate.id){
         console.log(item.reps)
         setExstate({...exstate,
             reps:item.reps,
           sets:item.sets,})
+        }
         
       })
     }

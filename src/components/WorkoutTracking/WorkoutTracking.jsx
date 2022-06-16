@@ -9,7 +9,6 @@ export default function WorkoutTracking({ workout, changeWeight }) {
     let disEx = []
     if(workout.excercises){
         disEx=workout.excercises
-        console.log("found");
     }
     //setExs(workout.excercises)
   const dis = disEx.map((data,i) =>{
@@ -19,7 +18,6 @@ export default function WorkoutTracking({ workout, changeWeight }) {
   })
 
   function handleTrack(e){
-      console.log("click")
       navigate(`/workouts/donedetails/${workout._id}`)
   }
   return (

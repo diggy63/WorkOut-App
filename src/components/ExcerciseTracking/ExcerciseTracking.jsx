@@ -22,7 +22,6 @@ export default function ExcerciseTracking({ data, changeWeight }) {
 
 
     async function handleSubmit(e) {
-        console.log('click')
        changeWeight(exstate);
   }
 
@@ -32,7 +31,6 @@ export default function ExcerciseTracking({ data, changeWeight }) {
     })
   }
   async function loseWeight(e){
-    console.log(parseInt(e.target.innerText))
     setExstate({...exstate,
       weight:parseInt(e.target.value) + parseInt(e.target.innerText),
     })
