@@ -13,6 +13,7 @@ import "./WorkoutDoneFull.css"
 
 
 export default function WorkDone({WO}){
+    console.log(WO)
     let exMap
     if(WO.excercises){  
     exMap = WO.excercises.map((data,i) =>{

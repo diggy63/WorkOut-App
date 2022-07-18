@@ -2,13 +2,11 @@ import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 export default function graph({allWOD, currTrack}) {
-  console.log(currTrack)
   const newData = []
     allWOD.forEach(item => {
-      // console.log(item.excercises[0].name, item.excercises[0].weight)
+      // console.log(item.excercises[0].createdAt, item.excercises[0].weight)
         newData.push({"name":item.excercises[currTrack].name,"weight":item.excercises[currTrack].weight})
     })
-    console.log(newData)
   return (
     <ResponsiveContainer width='100%' height={400}>
         <LineChart

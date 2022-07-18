@@ -6,7 +6,8 @@ export default function Stats({allWorkouts, stats, statName, WOToTrack}){
     const bestStats = stats.map((item,i) => {
         return(
           <Card.Content className="marginAllTen" key={i}>
-            Best {statName[i]} lift : {item} <Button onClick = {handleStatChange} value={i}>See Progress</Button>
+            <h4>Best {statName[i]} lift : {item}</h4>
+            <Button onClick = {handleStatChange} value={i}>See Progress</Button>
           </Card.Content>
         )
       })
