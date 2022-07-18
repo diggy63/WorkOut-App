@@ -11,6 +11,7 @@ import {
   } from "semantic-ui-react";
 import "./WorkoutDoneFull.css"
 
+
 export default function WorkDone({WO}){
     let exMap
     if(WO.excercises){  
@@ -25,12 +26,13 @@ export default function WorkDone({WO}){
     })
     }
     return(
-        <Card width={4} centered>
+        <Card centered>
+        <h1>Workout Details</h1>
             <Card.Header>
                 <div className="flex">
                 <h2>{WO.workoutName}</h2>
                 
-                {WO.createdAt}
+                {WO.createdAt ? WO.createdAt.slice(0,10):null}
                 </div>
             </Card.Header>
             {exMap}

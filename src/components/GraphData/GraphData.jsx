@@ -27,7 +27,7 @@ export default function graph({allWOD, currTrack}) {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="weight" stroke="#8884d8" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="weight" stroke="#14213d" activeDot={{ r: 8 }} />
         </LineChart>
       </ResponsiveContainer>
   );

@@ -12,8 +12,9 @@ import {
 import Header from "../../components/Header/Header"
 import { useParams } from "react-router-dom";
 import * as Workoutservice from "../../utils/workoutServices"
-import WorkoutDoneDetail from "../../components/WorkoutDoneFull/WorkoutDoneFull"
+import WorkoutDoneFull from "../../components/WorkoutDoneFull/WorkoutDoneFull"
 import GraphData from "../../components/GraphData/GraphData"
+import Stats from "../../components/Stats/Stats"
 
 export default function DoneDetails({user, handleLogout}){
     const [dWO, setDWO] = useState([]);
@@ -40,9 +41,10 @@ export default function DoneDetails({user, handleLogout}){
         findWO()
         findAllWO()
     },[])
-    function WOToTrack(e){
-      console.log(e.target.value)
-      setEX(e.target.value)
+
+
+    function WOToTrack(WorkoutID){
+      setEX(WorkoutID)
     }
 
     //finds all the done simliar workouts
@@ -68,10 +70,9 @@ export default function DoneDetails({user, handleLogout}){
     const bestStats = stats.map((item,i) => {
       return(
         <>
-        <div key={i}>
-          Best {statName[i]} lift : {item}
+        <div className="marginAllTen" key={i}>
+          Best {statName[i]} lift : {item} <Button onClick={WOToTrack} value={i}>See Progress</Button>
         </div>
-        <Button onClick={WOToTrack} value={i}>{i}</Button>
         </>
       )
     })
@@ -86,18 +87,12 @@ export default function DoneDetails({user, handleLogout}){
       </Grid.Row>
       <Grid.Row columns={2}>
         <Grid.Column textAlign="center" style={{ maxWidth: 400 }}>
-            <Card centered>
-          <h1>Workout Details</h1>
+            
           
-          <WorkoutDoneDetail WO={dWO} />
-          </Card>
+          <WorkoutDoneFull WO={dWO} />
         </Grid.Column>
-        <Grid.Column style={{ maxWidth: 400 }}>
-            <Segment className="flexcenter">
-                <h1>Stats</h1>
-            <h4>Workouts Done:{allWorkoutsD.length}</h4>
-            {bestStats}
-            </Segment>
+        <Grid.Column textAlign="center" style={{ maxWidth: 400 }}>
+          <Stats allWorkouts = {allWorkoutsD} stats={stats} statName={statName} WOToTrack={WOToTrack}/>
         </Grid.Column>
       </Grid.Row >
       <Grid.Row style={{ maxWidth: 1000 }}>
