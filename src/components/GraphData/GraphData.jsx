@@ -1,11 +1,14 @@
 import React, { PureComponent } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts';
 
 export default function graph({allWOD, currTrack}) {
   const newData = []
     allWOD.forEach(item => {
-      // console.log(item.excercises[0].createdAt, item.excercises[0].weight)
-        newData.push({"name":item.excercises[currTrack].name,"weight":item.excercises[currTrack].weight})
+        newData.push({
+          "date":item.createdAt.slice(0,10),
+          "weight":item.excercises[currTrack].weight,
+          "liftname":item.excercises[currTrack].name})
+        console.log(newData[0]['liftname'])
     })
   return (
     <ResponsiveContainer width='100%' height={400}>
@@ -21,7 +24,9 @@ export default function graph({allWOD, currTrack}) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="date">
+            <Label value={newData[0]['liftname']}/>
+          </XAxis>
           <YAxis />
           <Tooltip />
           <Legend />
