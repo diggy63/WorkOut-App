@@ -84,9 +84,9 @@ export default function Excersices({ user, handleLogout }) {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column width={4} textAlign="center">
+        <Grid.Column width={6} floated='right'>
           <Dropdown
-            style={{ maxWidth: 400 }}
+            style={{ maxWidth: 200 }}
             placeholder="Select Zone"
             value={search}
             fluid
@@ -95,7 +95,7 @@ export default function Excersices({ user, handleLogout }) {
             onChange={handleChange}
           />
         </Grid.Column>
-        <Grid.Column width={4}>
+        <Grid.Column width={6}>
         <Link to="/exercises/new">
           <Button>Add New Excersice</Button>
           </Link>

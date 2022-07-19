@@ -87,9 +87,10 @@ export default function AddToW({
       <Segment inverted color="grey">
         <Grid>
           <Grid.Row columns={3}>
-            <Grid.Column>
+            <Grid.Column width={8}>
               <Form autoComplete="off" onSubmit={findEx}>
                 <Input
+                  style={{ maxWidth: 200 }}
                   name="q"
                   placeholder="search"
                   value={exSearch}
