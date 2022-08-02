@@ -49,6 +49,8 @@ export default function Liked({liked, track, user, handleUnlikeUp}){
         </Table.Header>
 
         <Table.Body>
+        {liked.length > 0 ?
+        null: <h1>You have no liked workouts</h1>}
         {WO}
         {/* {works} */}
         </Table.Body>

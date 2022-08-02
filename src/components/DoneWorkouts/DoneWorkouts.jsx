@@ -32,6 +32,9 @@ export default function Done({done}){
         </Table.Header>
 
         <Table.Body>
+        {done.length > 0 ? 
+        null
+        : <h1>We dont have any tracked Workouts</h1>}
         {WO}
         {/* {works} */}
         </Table.Body>
